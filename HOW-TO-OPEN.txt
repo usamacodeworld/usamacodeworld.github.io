@@ -1,0 +1,21 @@
+MCI Career — static HTML build
+================================
+
+This folder is the complete MCI Career web app (71 pages) as plain HTML, CSS and JavaScript.
+No database or Node server is needed — demo data runs in the browser.
+
+View it locally
+  Browsers block apps opened straight from disk (file://), so serve the folder:
+    1. Open Terminal in this folder
+    2. Run:  python3 -m http.server 8080
+    3. Visit http://localhost:8080
+
+Host it
+  Upload the whole folder to any static host (Netlify, Vercel, Cloudflare Pages,
+  GitHub Pages, S3/CloudFront, Nginx, IIS). Serve it from the domain root, e.g.
+  https://career.mci.med.sa/ — not from a sub-path.
+
+Sign in
+  Go to /login and pick Employer, Healthcare Professional or MCI Admin.
+  Demo mode: any password works. Changes are saved in the visitor's own browser;
+  reset them from Admin → System Settings → Data.
