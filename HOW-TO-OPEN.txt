@@ -19,3 +19,5 @@ Sign in
   Go to /login and pick Employer, Healthcare Professional or MCI Admin.
   Demo mode: any password works. Changes are saved in the visitor's own browser;
   reset them from Admin → System Settings → Data.
+
+Photos: Pexels (free license) — see images/home/CREDITS.md.
