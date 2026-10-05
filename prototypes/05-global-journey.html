@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>MCI Career — E · Global Journey</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,500;0,6..72,600;1,6..72,500&family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+:root{--ink:#10263a;--ocean:#0a5c6b;--teal:#14939a;--gold:#c9a45c;--sand:#f6f3ec;--white:#fff;--d:"Newsreader",Georgia,serif;--b:"Sora",system-ui,sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{font-family:var(--b);color:var(--ink);background:var(--sand);line-height:1.55;overflow-x:hidden}
+a{color:inherit;text-decoration:none}img{max-width:100%;display:block}
+.wrap{width:min(1140px,calc(100% - 2rem));margin-inline:auto}
+.brand{display:flex;align-items:center;gap:.5rem;font-weight:700}.brand-logo{width:36px;height:36px}
+.brand-text b{color:var(--gold);font-family:var(--d);font-size:1.25rem;font-weight:600;margin-right:.28rem}
+.site-header{position:absolute;inset:0 0 auto;z-index:20;color:#fff}
+.header-inner{display:flex;align-items:center;justify-content:space-between;padding:1.2rem 0;gap:1rem}
+.nav{display:flex;gap:1.15rem;font-size:.9rem}.nav a{opacity:.85;transition:.2s}.nav a:hover{opacity:1;color:var(--gold)}
+.header-actions{display:flex;gap:.9rem;align-items:center}.link-quiet{opacity:.85}
+.btn,.btn-ghost,.btn-gold,.btn-ink{display:inline-flex;align-items:center;gap:.4rem;justify-content:center;padding:.88rem 1.25rem;border-radius:10px;font-weight:600;transition:.25s;font-size:.92rem}
+.btn{background:var(--teal);color:#fff;box-shadow:0 12px 28px rgba(20,147,154,.28)}.btn:hover{background:var(--ocean);transform:translateY(-2px)}
+.btn-ghost{border:1px solid rgba(255,255,255,.5);color:#fff;backdrop-filter:blur(6px)}.btn-ghost:hover{background:rgba(255,255,255,.1)}
+.btn-gold{background:var(--gold);color:#1d170b;box-shadow:0 12px 28px rgba(201,164,92,.3)}.btn-gold:hover{filter:brightness(1.05);transform:translateY(-2px)}
+.btn-ink{background:var(--ink);color:#fff}
+.hero{min-height:100svh;color:#fff;display:grid;align-items:center;position:relative;isolation:isolate;overflow:hidden}
+.hero-bg{position:absolute;inset:0;z-index:-2;background:url('../images/home/hero-doctor.jpg') center/cover;animation:ken 18s ease-in-out alternate infinite}
+@keyframes ken{from{transform:scale(1.05)}to{transform:scale(1.12)}}
+.hero-shade{position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(10,40,55,.8) 0%,rgba(10,60,70,.72) 45%,rgba(10,40,55,.85) 100%)}
+.glow{position:absolute;width:360px;height:360px;border-radius:50%;background:radial-gradient(circle,rgba(201,164,92,.25),transparent 70%);left:50%;top:22%;transform:translateX(-50%);filter:blur(10px);animation:pulse 5s ease-in-out infinite;z-index:-1}
+@keyframes pulse{0%,100%{opacity:.5;transform:translateX(-50%) scale(1)}50%{opacity:1;transform:translateX(-50%) scale(1.08)}}
+.hero-inner{padding:7.5rem 0 4.5rem;max-width:46rem;margin-inline:auto;text-align:center}
+.eyebrow{color:var(--gold);letter-spacing:.14em;text-transform:uppercase;font-size:.76rem;font-weight:600;margin-bottom:1rem;display:inline-flex;align-items:center;justify-content:center;gap:.6rem}
+.eyebrow::before{content:"";width:1.6rem;height:1px;background:var(--gold)}
+.hero h1{font-family:var(--d);font-weight:500;font-size:clamp(3rem,6vw,4.6rem);line-height:1.05;margin-bottom:1rem}
+.hero h1 em{font-style:italic;color:#f0d59a}
+.lead{font-size:1.08rem;opacity:.92;margin:0 auto 1.6rem;max-width:36rem}
+.cta-row{display:flex;flex-wrap:wrap;gap:.7rem;margin-bottom:2rem;justify-content:center}
+.journey{display:flex;gap:1.25rem;flex-wrap:wrap;padding-top:1.2rem;border-top:1px solid rgba(255,255,255,.2);font-size:.88rem;justify-content:center}
+.journey > div{text-align:center;min-width:9rem}
+.journey div strong{display:block;font-size:.95rem;color:#f0d59a}
+.section{padding:4.8rem 0}.section h2{font-family:var(--d);font-weight:500;font-size:clamp(2rem,3.4vw,2.75rem);margin-bottom:.55rem}
+.sub{color:#4d6572;max-width:38rem;margin-bottom:2rem}
+.path{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;position:relative}
+.path-line{position:absolute;top:2.2rem;left:10%;right:10%;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);z-index:0;transform:scaleX(0);transform-origin:left;transition:transform 1.2s ease}
+.path.in .path-line,.path-line.in{transform:scaleX(1)}
+.step{background:#fff;border-radius:20px;padding:1.55rem;position:relative;z-index:1;border:1px solid rgba(16,38,58,.08);box-shadow:0 14px 35px rgba(16,38,58,.04);transition:transform .35s,box-shadow .35s}
+.step:hover{transform:translateY(-8px);box-shadow:0 24px 50px rgba(16,38,58,.1)}
+.step .num{width:2.3rem;height:2.3rem;border-radius:50%;background:linear-gradient(135deg,var(--ocean),var(--teal));color:#fff;display:grid;place-items:center;font-weight:700;margin-bottom:.9rem;font-size:.9rem;box-shadow:0 8px 20px rgba(10,92,107,.3)}
+.step h3{margin-bottom:.35rem}.step p{color:#516977;margin-bottom:1rem;font-size:.95rem}
+.step ul{list-style:none;display:grid;gap:.4rem;margin-bottom:1.15rem;font-size:.9rem}
+.step ul li{display:flex;gap:.4rem}.step ul li svg{color:var(--teal);flex-shrink:0;margin-top:.12rem}
+.stats{background:linear-gradient(120deg,var(--ocean),#0d7480);color:#fff;border-radius:26px;padding:2.3rem 1.5rem;display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;text-align:center;box-shadow:0 24px 50px rgba(10,92,107,.25);position:relative;overflow:hidden}
+.stats::before{content:"";position:absolute;width:220px;height:220px;border:1px solid rgba(240,213,154,.2);border-radius:50%;right:-40px;top:-60px}
+.stats strong{display:block;font-family:var(--d);font-size:2.15rem;color:var(--gold);font-weight:500}
+.map-block{display:grid;grid-template-columns:1.05fr .95fr;gap:2.5rem;align-items:center}
+.map-photo{border-radius:26px;overflow:hidden;position:relative;box-shadow:0 25px 50px rgba(16,38,58,.12)}
+.map-photo img{width:100%;aspect-ratio:5/4;object-fit:cover;transition:transform 1s}
+.map-photo:hover img{transform:scale(1.05)}
+.flag-list{display:grid;gap:.6rem;margin:1.2rem 0 1.6rem}
+.flag-list span{display:flex;justify-content:space-between;align-items:center;background:#fff;border-radius:14px;padding:.75rem 1rem;border:1px solid rgba(16,38,58,.08);font-weight:500;transition:transform .2s,border-color .2s}
+.flag-list span:hover{transform:translateX(6px);border-color:rgba(20,147,154,.35)}
+.flag-list span small{color:var(--teal);font-weight:700}
+.jobs{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+.job{background:#fff;border-radius:20px;padding:1.3rem;border:1px solid rgba(16,38,58,.08);border-top:4px solid var(--gold);transition:transform .3s,box-shadow .3s}
+.job:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(16,38,58,.08)}
+.job h3{font-size:1.05rem;margin-bottom:.35rem}.job .meta{color:#5a7382;font-size:.9rem;margin-bottom:.8rem}
+.pair{display:grid;grid-template-columns:1.15fr .85fr;gap:1rem}
+.partner-panel{border-radius:24px;min-height:320px;color:#fff;padding:1.9rem;background:linear-gradient(150deg,rgba(10,50,70,.78),rgba(10,70,80,.55)),url('../images/home/partner-hospital.jpg') center/cover;display:flex;flex-direction:column;justify-content:end;gap:.7rem;transition:transform .35s}
+.partner-panel:hover{transform:scale(1.01)}
+.support-panel{background:#e7f2f1;border-radius:24px;padding:1.9rem}
+.support-panel ul{list-style:none;display:grid;gap:.5rem;margin:1rem 0 1.3rem}
+.support-panel ul li{display:flex;gap:.45rem;align-items:center}.support-panel ul li svg{color:var(--ocean)}
+.partners{display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem}
+.partners div{background:#fff;border-radius:16px;padding:1.05rem;border:1px solid rgba(16,38,58,.08);transition:transform .25s}
+.partners div:hover{transform:translateY(-3px)}.partners small{color:#607888;display:block;margin-top:.2rem}
+.quote{display:grid;grid-template-columns:.85fr 1.15fr;gap:0;background:var(--ink);color:#fff;border-radius:30px;overflow:hidden}
+.quote img{width:100%;height:100%;object-fit:cover;min-height:290px}
+.quote blockquote{padding:2.1rem;font-family:var(--d);font-size:clamp(1.35rem,2vw,1.75rem);line-height:1.35;position:relative}
+.quote blockquote::before{content:"";position:absolute;top:1.5rem;left:2.1rem;width:40px;height:3px;background:var(--gold)}
+.cta{text-align:center;background:linear-gradient(120deg,#0a5c6b,#0f7f86);color:#fff;border-radius:30px;padding:3.4rem 1.5rem;box-shadow:0 24px 50px rgba(10,92,107,.25);position:relative;overflow:hidden}
+.cta .glow{left:-5%;top:auto;bottom:-20%;right:auto}
+.insights{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+.insight{background:#fff;border-radius:20px;overflow:hidden;border:1px solid rgba(16,38,58,.08);transition:transform .35s,box-shadow .35s}
+.insight:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(16,38,58,.08)}
+.insight img{width:100%;aspect-ratio:16/10;object-fit:cover}.insight .body{padding:1.1rem}
+.insight .cat{color:var(--ocean);font-weight:700;font-size:.8rem}.insight h3{margin:.35rem 0 .4rem;font-size:1.05rem;font-family:var(--d)}.insight small{color:#6a8290}
+.link-more{color:var(--ocean);font-weight:600;display:inline-flex;align-items:center;gap:.3rem}
+/* UNIQUE FOOTER E — destination passport strip */
+.site-footer{margin-top:2.5rem;background:#0b2333;color:rgba(255,255,255,.82);position:relative;overflow:hidden}
+.foot-pass{padding:2.8rem 0 0;position:relative}
+.dest-strip{display:flex;gap:.6rem;overflow:hidden;mask-image:linear-gradient(90deg,transparent,black 8%,black 92%,transparent);margin-bottom:2rem}
+.dest-track{display:flex;gap:.6rem;animation:marquee 28s linear infinite;white-space:nowrap}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.dest-track span{padding:.45rem .9rem;border:1px solid rgba(201,164,92,.35);border-radius:999px;color:#f0d59a;font-size:.85rem;font-weight:600}
+.foot-grid{display:grid;grid-template-columns:1.35fr repeat(3,1fr);gap:1.8rem;padding-bottom:2rem}
+.foot-grid .brand{color:#fff;margin-bottom:.8rem}
+.foot-grid p{color:#8aa3b0;max-width:26rem;margin-bottom:1rem}
+.foot-grid h4{color:#f0d59a;margin-bottom:.7rem;font-family:var(--d);font-weight:500}
+.foot-grid a{display:block;margin-bottom:.35rem;font-size:.9rem;opacity:.78;transition:.2s}
+.foot-grid a:hover{opacity:1;color:#f0d59a}
+.foot-bottom{border-top:1px solid rgba(255,255,255,.1);padding:1.1rem 0;display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;font-size:.85rem;color:#7f96a3}
+
+[data-animate]{opacity:0;transform:translateY(26px);transition:opacity .75s ease,transform .75s ease}
+[data-animate].in{opacity:1;transform:none}
+[data-animate="left"]{transform:translateX(-24px)}[data-animate="left"].in{transform:none}
+[data-animate="scale"]{transform:scale(.96)}[data-animate="scale"].in{transform:none}
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}
+@media (prefers-reduced-motion:reduce){[data-animate],.path-line,.glow,.ken{animation:none!important;transition:none!important;opacity:1;transform:none}}
+
+@media (max-width:900px){.nav,.link-quiet{display:none}.path,.stats,.map-block,.jobs,.pair,.partners,.insights,.quote,.foot-grid{grid-template-columns:1fr}.path-line{display:none}}
+</style></head><body>
+<header class="site-header" id="top">
+  <div class="wrap header-inner">
+    <a class="brand" href="#home">
+  <img class="brand-logo" src="../icon.svg" width="36" height="36" alt="MCI Career"/>
+  <span class="brand-text"><b>MCI</b>Career</span>
+</a>
+    <nav class="nav" aria-label="Primary">
+      <a href="#home">Home</a>
+      <a href="#audiences">Employers</a>
+      <a href="#audiences">Professionals</a>
+      <a href="#jobs">Jobs</a>
+      <a href="#about">About</a>
+      <a href="#insights">Resources</a>
+    </nav>
+    <div class="header-actions">
+      <a class="link-quiet" href="#">Login</a>
+      <a class="btn-gold" href="#cta">Get Started</a>
+    </div>
+  </div>
+</header>
+<section class="hero" id="home">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="hero-shade" aria-hidden="true"></div>
+  <div class="glow" aria-hidden="true"></div>
+  <div class="wrap hero-inner">
+    <p class="eyebrow">Part of MedConsult International</p>
+    <h1>People Powering <em>Better Care</em></h1>
+    <p class="lead">Connecting healthcare talent with opportunity — a community-first platform for professionals and leading medical institutions worldwide.</p>
+    <div class="cta-row">
+      <a class="btn-gold" href="#">I'm a Healthcare Professional <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <a class="btn-ghost" href="#">I'm a Hospital / Employer</a>
+    </div>
+    <div class="journey">
+      <div><strong>Global Opportunities</strong>In leading healthcare institutions</div>
+      <div><strong>Trusted by Employers</strong>Across multiple countries</div>
+      <div><strong>Career Support</strong>Beyond job placement</div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="audiences"><div class="wrap">
+  <h2 data-animate>How MCI Career Works</h2>
+  <p class="sub" data-animate>A simple, smarter way to connect talent with healthcare opportunities.</p>
+  <div class="path" data-animate>
+    <div class="path-line" aria-hidden="true"></div>
+    <article class="step"><div class="num">01</div><h3>For Hospitals &amp; Employers</h3><p>Find. Hire. Build stronger teams.</p>
+      <ul><li><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.2 6.2 11.5 13 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg> Post job requirements</li><li><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.2 6.2 11.5 13 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg> Access a wide talent pool</li><li><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.2 6.2 11.5 13 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg> AI-powered matching</li><li><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.2 6.2 11.5 13 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg> Full ATS tools</li></ul>
+      <a class="btn-ink" href="#">Learn More</a></article>
+    <article class="step d1"><div class="num">02</div><h3>For Healthcare Professionals</h3><p>Grow your career. Go further.</p>
+      <ul><li><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.2 6.2 11.5 13 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg> Global job opportunities</li><li><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.2 6.2 11.5 13 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg> ATS CV analysis</li><li><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.2 6.2 11.5 13 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg> Licensing by country</li><li><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.2 6.2 11.5 13 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg> Career resources</li></ul>
+      <a class="btn-ink" href="#">Learn More</a></article>
+    <article class="step d2"><div class="num">03</div><h3>For a Healthier Future</h3><p>Stronger people. Stronger healthcare.</p>
+      <ul><li><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.2 6.2 11.5 13 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg> Talent with impact</li><li><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.2 6.2 11.5 13 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg> Support health systems</li><li><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.2 6.2 11.5 13 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg> Bridge opportunities</li><li><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.2 6.2 11.5 13 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg> Build a better tomorrow</li></ul>
+      <a class="btn-ink" href="#">Our Mission</a></article>
+  </div>
+</div></section>
+
+<section class="section" style="padding-top:0"><div class="wrap">
+  <div class="stats">
+    <div data-animate><strong>12,450+</strong>Healthcare Professionals</div>
+    <div class="d1" data-animate><strong>186+</strong>Partner Hospitals &amp; Clinics</div>
+    <div class="d2" data-animate><strong>24</strong>Countries</div>
+    <div class="d3" data-animate><strong>1,276+</strong>Successful Placements</div>
+  </div>
+</div></section>
+
+<section class="section" id="about" style="padding-top:1rem"><div class="wrap map-block">
+  <div data-animate="left"><h2>Healthcare Careers Without Borders</h2>
+    <p class="sub">Global careers. Local impact. We connect talent with roles across the Middle East, Europe, and beyond.</p>
+    <div class="flag-list"><span>Saudi Arabia<small>Open roles</small></span><span>UAE<small>Open roles</small></span><span>Qatar<small>Open roles</small></span><span>Germany<small>Open roles</small></span><span>United Kingdom<small>Open roles</small></span><span>And more…<small>Explore</small></span></div>
+    <a class="btn" href="#">Explore Global Jobs <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+  <div class="map-photo" data-animate="scale"><img src="../images/home/careers-doctor.jpg" alt=""/></div>
+</div></section>
+
+<section class="section" id="jobs" style="padding-top:0"><div class="wrap">
+  <div style="display:flex;justify-content:space-between;gap:1rem;align-items:end;margin-bottom:1.25rem" data-animate>
+    <div><h2>Featured Job Opportunities</h2><p class="sub" style="margin:0">Latest healthcare positions from trusted partners.</p></div>
+    <a class="link-more" href="#">View All Jobs <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+  </div>
+  <div class="jobs">
+    <article class="job d1" data-animate><h3>Registered Nurse — ICU</h3><p class="meta">Riyadh, Saudi Arabia</p><div style="font-size:.85rem;margin-bottom:1rem">Full-time · SAR 12–16k</div><a class="link-more" href="#">Apply Now <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></article><article class="job d2" data-animate><h3>Consultant Cardiologist</h3><p class="meta">Dubai, UAE</p><div style="font-size:.85rem;margin-bottom:1rem">Full-time · AED 45–60k</div><a class="link-more" href="#">Apply Now <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></article><article class="job d3" data-animate><h3>Medical Laboratory Scientist</h3><p class="meta">Doha, Qatar</p><div style="font-size:.85rem;margin-bottom:1rem">Full-time · QAR 14–18k</div><a class="link-more" href="#">Apply Now <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></article>
+  </div>
+</div></section>
+
+<section class="section" style="padding-top:0"><div class="wrap pair">
+  <div class="partner-panel" data-animate><h2 style="font-size:2rem">Partner With Us</h2>
+    <p>Join a growing network of leading healthcare institutions and access exceptional talent.</p>
+    <a class="btn-gold" href="#">Become a Partner</a></div>
+  <div class="support-panel d1" data-animate><h2 style="font-size:1.8rem">Support Beyond Placement</h2>
+    <p class="sub" style="margin:0">From licensing guidance to CV optimization, we support every step.</p>
+    <ul><li><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.2 6.2 11.5 13 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg> Licensing &amp; Credentialing Support</li><li><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.2 6.2 11.5 13 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg> ATS CV Analysis &amp; Optimization</li><li><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.2 6.2 11.5 13 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg> Career Guidance &amp; Resources</li><li><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.2 6.2 11.5 13 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg> Global Job Opportunities</li></ul>
+    <a class="btn-ink" href="#">Explore Professional Services</a></div>
+</div></section>
+
+<section class="section" style="padding-top:0"><div class="wrap">
+  <h2 data-animate>Trusted by Leading Healthcare Institutions</h2>
+  <p class="sub" data-animate>Illustrative partner network across the region.</p>
+  <div class="partners"><div data-animate><strong>Al Faisaliah Medical City</strong><small>Riyadh</small></div><div data-animate><strong>Red Sea Specialist Hospital</strong><small>Jeddah</small></div><div data-animate><strong>Eastern Province Medical Group</strong><small>Dammam</small></div><div data-animate><strong>Emirates Crescent Hospital</strong><small>Dubai</small></div><div data-animate><strong>Abu Dhabi Heart & Vascular</strong><small>Abu Dhabi</small></div><div data-animate><strong>Doha Royal Medical Center</strong><small>Doha</small></div></div>
+</div></section>
+
+<section class="section" style="padding-top:0"><div class="wrap quote" data-animate>
+  <img src="../images/home/testimonial-doctor.jpg" alt="Dr. Ahmed Khan"/>
+  <blockquote style="padding-top:2.8rem">“MCI Career helped me find the right opportunity at the right time. The support throughout the licensing process was exceptional.”
+    <cite style="display:block;margin-top:1rem;font-style:normal;font-family:var(--b);font-size:.95rem;opacity:.8"><strong>Dr. Ahmed Khan</strong><br/>Consultant Internal Medicine — Placed in Saudi Arabia</cite>
+  </blockquote>
+</div></section>
+
+<section class="section" id="cta"><div class="wrap cta" data-animate>
+  <div class="glow" aria-hidden="true"></div>
+  <h2 style="color:#fff">Ready to Take the Next Step?</h2>
+  <p style="max-width:36rem;margin:.6rem auto 1.5rem;opacity:.92">Whether you're looking to hire exceptional talent or advance your healthcare career, MCI Career is here to support you.</p>
+  <div class="cta-row" style="justify-content:center;margin:0">
+    <a class="btn-gold" href="#">Create an Account</a>
+    <a class="btn-ghost" href="#">Contact Us</a>
+  </div>
+</div></section>
+
+<section class="section" id="insights" style="padding-top:0"><div class="wrap">
+  <h2 data-animate>Latest Insights &amp; Resources</h2>
+  <p class="sub" data-animate>Career tips, licensing guides, and industry news.</p>
+  <div class="insights">
+    <article class="insight d1" data-animate><img src="../images/home/insight-ats-cv.jpg" alt=""/><div class="body"><div class="cat">Career Tips</div><h3>How to Create an ATS-Friendly CV for Healthcare Jobs</h3><small>28 Sep 2026</small></div></article><article class="insight d2" data-animate><img src="../images/home/insight-licensing.jpg" alt=""/><div class="body"><div class="cat">Licensing</div><h3>A Guide to Healthcare Licensing in Saudi Arabia</h3><small>25 Sep 2026</small></div></article><article class="insight d3" data-animate><img src="../images/home/insight-recruitment.jpg" alt=""/><div class="body"><div class="cat">Industry News</div><h3>The Future of Healthcare Recruitment in the Middle East</h3><small>20 Sep 2026</small></div></article>
+  </div>
+</div></section>
+
+<footer class="site-footer"><div class="wrap foot-pass">
+  <div class="dest-strip" aria-hidden="true">
+    <div class="dest-track">
+      <span>Saudi Arabia</span><span>UAE</span><span>Qatar</span><span>Germany</span><span>United Kingdom</span><span>Bahrain</span><span>Kuwait</span><span>Oman</span><span>Saudi Arabia</span><span>UAE</span><span>Qatar</span><span>Germany</span><span>United Kingdom</span><span>Bahrain</span><span>Kuwait</span><span>Oman</span>
+    </div>
+  </div>
+  <div class="foot-grid">
+    <div><a class="brand" href="#home">
+  <img class="brand-logo" src="../icon.svg" width="36" height="36" alt="MCI Career"/>
+  <span class="brand-text"><b>MCI</b>Career</span>
+</a>
+      <p>Part of MedConsult International. Connecting healthcare talent with opportunity. Building a healthier tomorrow.</p>
+    </div>
+    <div><h4>Professionals</h4><a href="#">Browse Jobs</a><a href="#">Licensing Support</a><a href="#">CV Services</a><a href="#">Career Resources</a></div>
+    <div><h4>Employers</h4><a href="#">Post a Job</a><a href="#">Search Candidates</a><a href="#">Pricing</a><a href="#">Become a Partner</a></div>
+    <div><h4>Company</h4><a href="#">About</a><a href="#">Contact</a><a href="#">Privacy</a><a href="#">Terms</a></div>
+  </div>
+  <div class="foot-bottom"><span>© 2026 MCI Career · MedConsult International</span><span>Healthcare careers without borders</span></div>
+</div></footer>
+<script>
+(() => {
+  const els = document.querySelectorAll('[data-animate]');
+  if (!('IntersectionObserver' in window)) { els.forEach(el => el.classList.add('in')); return; }
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        const line = e.target.querySelector('.path-line');
+        if (line) line.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.14, rootMargin: '0px 0px -8% 0px' });
+  els.forEach(el => io.observe(el));
+})();
+</script>
+</body></html>

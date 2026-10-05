@@ -1,2 +1,4 @@
-MCI-Career-HTML.zip
+﻿MCI-Career-HTML.zip
 _zip_extract_tmp/
+prototypes/_*.py
+prototypes/__pycache__/
