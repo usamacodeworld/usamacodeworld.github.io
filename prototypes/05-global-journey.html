@@ -3,11 +3,11 @@
 <meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>MCI Career — E · Global Journey</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,500;0,6..72,600;1,6..72,500&family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&family=Raleway:ital,wght@0,400;0,500;0,600;0,700;1,500&display=swap" rel="stylesheet"/>
 <style>
-:root{--ink:#10263a;--ocean:#0a5c6b;--teal:#14939a;--gold:#c9a45c;--sand:#f6f3ec;--white:#fff;--d:"Newsreader",Georgia,serif;--b:"Sora",system-ui,sans-serif}
+:root{--ink:#001845;--ocean:#03045e;--teal:#00b4d8;--primary:#0066cc;--gold:#48cae4;--accent:#48cae4;--sand:#f8f9fa;--text:#333333;--white:#fff;--d:"Raleway",system-ui,sans-serif;--b:"Raleway",system-ui,sans-serif;--ar:"Cairo","Raleway",sans-serif}
 *{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
-body{font-family:var(--b);color:var(--ink);background:var(--sand);line-height:1.55;overflow-x:hidden}
+body{font-family:var(--b);color:var(--text, #333333);background:var(--sand);line-height:1.55;overflow-x:hidden}
 a{color:inherit;text-decoration:none}img{max-width:100%;display:block}
 .wrap{width:min(1140px,calc(100% - 2rem));margin-inline:auto}
 .brand{display:flex;align-items:center;gap:.5rem;font-weight:700}.brand-logo{width:36px;height:36px}
@@ -19,7 +19,7 @@ a{color:inherit;text-decoration:none}img{max-width:100%;display:block}
 .btn,.btn-ghost,.btn-gold,.btn-ink{display:inline-flex;align-items:center;gap:.4rem;justify-content:center;padding:.88rem 1.25rem;border-radius:10px;font-weight:600;transition:.25s;font-size:.92rem}
 .btn{background:var(--teal);color:#fff;box-shadow:0 12px 28px rgba(20,147,154,.28)}.btn:hover{background:var(--ocean);transform:translateY(-2px)}
 .btn-ghost{border:1px solid rgba(255,255,255,.5);color:#fff;backdrop-filter:blur(6px)}.btn-ghost:hover{background:rgba(255,255,255,.1)}
-.btn-gold{background:var(--gold);color:#1d170b;box-shadow:0 12px 28px rgba(201,164,92,.3)}.btn-gold:hover{filter:brightness(1.05);transform:translateY(-2px)}
+.btn-gold{background:var(--gold);color:#001845;box-shadow:0 12px 28px rgba(201,164,92,.3)}.btn-gold:hover{filter:brightness(1.05);transform:translateY(-2px)}
 .btn-ink{background:var(--ink);color:#fff}
 .hero{min-height:100svh;color:#fff;display:grid;align-items:center;position:relative;isolation:isolate;overflow:hidden}
 .hero-bg{position:absolute;inset:0;z-index:-2;background:url('../images/home/hero-doctor.jpg') center/cover;animation:ken 18s ease-in-out alternate infinite}
@@ -31,12 +31,12 @@ a{color:inherit;text-decoration:none}img{max-width:100%;display:block}
 .eyebrow{color:var(--gold);letter-spacing:.14em;text-transform:uppercase;font-size:.76rem;font-weight:600;margin-bottom:1rem;display:inline-flex;align-items:center;justify-content:center;gap:.6rem}
 .eyebrow::before{content:"";width:1.6rem;height:1px;background:var(--gold)}
 .hero h1{font-family:var(--d);font-weight:500;font-size:clamp(3rem,6vw,4.6rem);line-height:1.05;margin-bottom:1rem}
-.hero h1 em{font-style:italic;color:#f0d59a}
+.hero h1 em{font-style:italic;color:#48cae4}
 .lead{font-size:1.08rem;opacity:.92;margin:0 auto 1.6rem;max-width:36rem}
 .cta-row{display:flex;flex-wrap:wrap;gap:.7rem;margin-bottom:2rem;justify-content:center}
 .journey{display:flex;gap:1.25rem;flex-wrap:wrap;padding-top:1.2rem;border-top:1px solid rgba(255,255,255,.2);font-size:.88rem;justify-content:center}
 .journey > div{text-align:center;min-width:9rem}
-.journey div strong{display:block;font-size:.95rem;color:#f0d59a}
+.journey div strong{display:block;font-size:.95rem;color:#48cae4}
 .section{padding:4.8rem 0}.section h2{font-family:var(--d);font-weight:500;font-size:clamp(2rem,3.4vw,2.75rem);margin-bottom:.55rem}
 .sub{color:#4d6572;max-width:38rem;margin-bottom:2rem}
 .path{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;position:relative}
@@ -48,7 +48,7 @@ a{color:inherit;text-decoration:none}img{max-width:100%;display:block}
 .step h3{margin-bottom:.35rem}.step p{color:#516977;margin-bottom:1rem;font-size:.95rem}
 .step ul{list-style:none;display:grid;gap:.4rem;margin-bottom:1.15rem;font-size:.9rem}
 .step ul li{display:flex;gap:.4rem}.step ul li svg{color:var(--teal);flex-shrink:0;margin-top:.12rem}
-.stats{background:linear-gradient(120deg,var(--ocean),#0d7480);color:#fff;border-radius:26px;padding:2.3rem 1.5rem;display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;text-align:center;box-shadow:0 24px 50px rgba(10,92,107,.25);position:relative;overflow:hidden}
+.stats{background:linear-gradient(120deg,var(--ocean),#0066cc);color:#fff;border-radius:26px;padding:2.3rem 1.5rem;display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;text-align:center;box-shadow:0 24px 50px rgba(10,92,107,.25);position:relative;overflow:hidden}
 .stats::before{content:"";position:absolute;width:220px;height:220px;border:1px solid rgba(240,213,154,.2);border-radius:50%;right:-40px;top:-60px}
 .stats strong{display:block;font-family:var(--d);font-size:2.15rem;color:var(--gold);font-weight:500}
 .map-block{display:grid;grid-template-columns:1.05fr .95fr;gap:2.5rem;align-items:center}
@@ -66,7 +66,7 @@ a{color:inherit;text-decoration:none}img{max-width:100%;display:block}
 .pair{display:grid;grid-template-columns:1.15fr .85fr;gap:1rem}
 .partner-panel{border-radius:24px;min-height:320px;color:#fff;padding:1.9rem;background:linear-gradient(150deg,rgba(10,50,70,.78),rgba(10,70,80,.55)),url('../images/home/partner-hospital.jpg') center/cover;display:flex;flex-direction:column;justify-content:end;gap:.7rem;transition:transform .35s}
 .partner-panel:hover{transform:scale(1.01)}
-.support-panel{background:#e7f2f1;border-radius:24px;padding:1.9rem}
+.support-panel{background:#e8f7fc;border-radius:24px;padding:1.9rem}
 .support-panel ul{list-style:none;display:grid;gap:.5rem;margin:1rem 0 1.3rem}
 .support-panel ul li{display:flex;gap:.45rem;align-items:center}.support-panel ul li svg{color:var(--ocean)}
 .partners{display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem}
@@ -76,7 +76,7 @@ a{color:inherit;text-decoration:none}img{max-width:100%;display:block}
 .quote img{width:100%;height:100%;object-fit:cover;min-height:290px}
 .quote blockquote{padding:2.1rem;font-family:var(--d);font-size:clamp(1.35rem,2vw,1.75rem);line-height:1.35;position:relative}
 .quote blockquote::before{content:"";position:absolute;top:1.5rem;left:2.1rem;width:40px;height:3px;background:var(--gold)}
-.cta{text-align:center;background:linear-gradient(120deg,#0a5c6b,#0f7f86);color:#fff;border-radius:30px;padding:3.4rem 1.5rem;box-shadow:0 24px 50px rgba(10,92,107,.25);position:relative;overflow:hidden}
+.cta{text-align:center;background:linear-gradient(120deg,#03045e,#00b4d8);color:#fff;border-radius:30px;padding:3.4rem 1.5rem;box-shadow:0 24px 50px rgba(10,92,107,.25);position:relative;overflow:hidden}
 .cta .glow{left:-5%;top:auto;bottom:-20%;right:auto}
 .insights{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
 .insight{background:#fff;border-radius:20px;overflow:hidden;border:1px solid rgba(16,38,58,.08);transition:transform .35s,box-shadow .35s}
@@ -85,18 +85,18 @@ a{color:inherit;text-decoration:none}img{max-width:100%;display:block}
 .insight .cat{color:var(--ocean);font-weight:700;font-size:.8rem}.insight h3{margin:.35rem 0 .4rem;font-size:1.05rem;font-family:var(--d)}.insight small{color:#6a8290}
 .link-more{color:var(--ocean);font-weight:600;display:inline-flex;align-items:center;gap:.3rem}
 /* UNIQUE FOOTER E — destination passport strip */
-.site-footer{margin-top:2.5rem;background:#0b2333;color:rgba(255,255,255,.82);position:relative;overflow:hidden}
+.site-footer{margin-top:2.5rem;background:#001845;color:rgba(255,255,255,.82);position:relative;overflow:hidden}
 .foot-pass{padding:2.8rem 0 0;position:relative}
 .dest-strip{display:flex;gap:.6rem;overflow:hidden;mask-image:linear-gradient(90deg,transparent,black 8%,black 92%,transparent);margin-bottom:2rem}
 .dest-track{display:flex;gap:.6rem;animation:marquee 28s linear infinite;white-space:nowrap}
 @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-.dest-track span{padding:.45rem .9rem;border:1px solid rgba(201,164,92,.35);border-radius:999px;color:#f0d59a;font-size:.85rem;font-weight:600}
+.dest-track span{padding:.45rem .9rem;border:1px solid rgba(201,164,92,.35);border-radius:999px;color:#48cae4;font-size:.85rem;font-weight:600}
 .foot-grid{display:grid;grid-template-columns:1.35fr repeat(3,1fr);gap:1.8rem;padding-bottom:2rem}
 .foot-grid .brand{color:#fff;margin-bottom:.8rem}
 .foot-grid p{color:#8aa3b0;max-width:26rem;margin-bottom:1rem}
-.foot-grid h4{color:#f0d59a;margin-bottom:.7rem;font-family:var(--d);font-weight:500}
+.foot-grid h4{color:#48cae4;margin-bottom:.7rem;font-family:var(--d);font-weight:500}
 .foot-grid a{display:block;margin-bottom:.35rem;font-size:.9rem;opacity:.78;transition:.2s}
-.foot-grid a:hover{opacity:1;color:#f0d59a}
+.foot-grid a:hover{opacity:1;color:#48cae4}
 .foot-bottom{border-top:1px solid rgba(255,255,255,.1);padding:1.1rem 0;display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;font-size:.85rem;color:#7f96a3}
 
 [data-animate]{opacity:0;transform:translateY(26px);transition:opacity .75s ease,transform .75s ease}
@@ -107,6 +107,18 @@ a{color:inherit;text-decoration:none}img{max-width:100%;display:block}
 @media (prefers-reduced-motion:reduce){[data-animate],.path-line,.glow,.ken{animation:none!important;transition:none!important;opacity:1;transform:none}}
 
 @media (max-width:900px){.nav,.link-quiet{display:none}.path,.stats,.map-block,.jobs,.pair,.partners,.insights,.quote,.foot-grid{grid-template-columns:1fr}.path-line{display:none}}
+
+html:lang(ar), [lang="ar"], .ar { font-family: var(--ar, "Cairo", sans-serif); }
+
+/* brand-kit */
+.btn, .btn-gold { background-image: linear-gradient(135deg, #0066cc, #00b4d8); color: #fff; border: 0; }
+.btn-dark, .btn-navy, .btn-ink { background: #001845; background-image: none; color: #fff; }
+.cta-band, .cta-block, .stats, .foot-dock, .site-footer { --brand-grad: linear-gradient(120deg, #0066cc, #00b4d8); }
+.cta-band, .cta-block { background: linear-gradient(120deg, #0066cc, #00b4d8) !important; color: #fff; }
+.cta-band h2, .cta-block h2 { color: #fff !important; }
+.cta-band .sub, .cta-block p { color: rgba(255,255,255,.92) !important; }
+.cta { background: linear-gradient(120deg, #0066cc, #00b4d8) !important; color: #fff; }
+.cta h2, .cta p { color: #fff !important; }
 </style></head><body>
 <header class="site-header" id="top">
   <div class="wrap header-inner">
