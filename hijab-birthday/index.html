@@ -86,8 +86,10 @@
   @keyframes bob{50%{transform:translateY(5px)}}
   .paint-title{text-align:center}.paint-title h2{font-size:27px}
 
-  .wall{position:relative;height:min(52vh,400px);margin:4px 0}
-  .pol{position:absolute;width:47%;aspect-ratio:.8;perspective:900px;cursor:pointer}
+  .reel{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding:22px calc((100% - min(66vw,270px))/2) 30px;margin:0 -26px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .reel::-webkit-scrollbar{display:none}
+  .pol{position:relative;flex:0 0 min(66vw,270px);aspect-ratio:.78;perspective:900px;cursor:pointer;scroll-snap-align:center;transition:transform .4s}
+  .pol:nth-child(odd){transform:rotate(-3deg)} .pol:nth-child(even){transform:rotate(3deg)}
   .pol .in{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .7s cubic-bezier(.3,.7,.2,1)}
   .pol.flip .in{transform:rotateY(180deg)}
   .pol .f,.pol .b{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;background:#fff;border-radius:6px;padding:9px 9px 0;box-shadow:0 18px 30px -16px #8f3a3399}
@@ -95,9 +97,7 @@
   .pol .f span{display:block;text-align:center;font:700 20px/1.1 'Caveat';color:var(--plum);padding-top:6px}
   .pol .b{transform:rotateY(180deg);display:flex;align-items:center;justify-content:center;text-align:center;padding:18px;background:#fffaf0;font:700 22px/1.2 'Caveat';color:var(--coral-d)}
   .pol::before{content:"";position:absolute;top:-10px;left:50%;width:60px;height:20px;margin-left:-30px;background:#ffd34d99;transform:rotate(-4deg);z-index:2;border-radius:2px}
-  .p1{left:0;top:0;transform:rotate(-7deg)} .p2{right:0;top:5%;transform:rotate(6deg)} .p3{left:26%;top:38%;transform:rotate(-2deg);z-index:2}
-  .pol.top{z-index:6}
-
+  
   .cards{display:grid;grid-template-columns:1fr 1fr;gap:12px}
   .card{height:128px;perspective:800px;cursor:pointer}
   .card .in{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .6s cubic-bezier(.3,.7,.2,1)}
@@ -115,7 +115,8 @@
   .twinkle{animation:tw 1.6s infinite alternate} @keyframes tw{to{opacity:.35}}
 
   .wishes{display:flex;flex-direction:column;gap:10px}
-  .wishes label{display:flex;align-items:center;gap:10px} .wishes label span{font:800 18px 'Fraunces';color:var(--coral);width:22px}
+  .wishes label{display:flex;align-items:center;gap:10px} .wish{font-size:16px}
+  .wishes label span{font:800 18px 'Fraunces';color:var(--coral);width:22px}
   .stamp{position:absolute;right:22px;top:40%;font:800 26px 'Fraunces';color:var(--coral-d);border:4px solid var(--coral-d);padding:6px 14px;border-radius:10px;transform:rotate(-14deg) scale(2.5);opacity:0;transition:.35s cubic-bezier(.2,1.6,.4,1);pointer-events:none;background:#fff8}
   .stamp.on{opacity:1;transform:rotate(-14deg) scale(1)}
 
@@ -256,13 +257,18 @@
 
     <section class="slide" data-bg="#ffece6">
       <div class="hand">the gallery of iconic moments</div>
-      <h2>Exhibit A, B &amp; <em>C</em></h2>
-      <div class="wall">
-        <div class="pol p1"><div class="in"><div class="f"><img src="hijab.jpg" alt="" style="object-position:50% 35%"><span>main character energy ✨</span></div><div class="b">That smile has fixed more bad days than any code ever has.</div></div></div>
-        <div class="pol p2"><div class="in"><div class="f"><img src="profile_sq.jpg" alt=""><span>jhumka supremacy 💎</span></div><div class="b">Earrings: 10/10. Hair flip: 11/10. Attitude: priceless.</div></div></div>
-        <div class="pol p3"><div class="in"><div class="f"><img src="party.jpg" alt="" style="object-position:40% 45%"><span>outshining the chandelier</span></div><div class="b">The chandelier tried its best. It still came second. 💙</div></div></div>
+      <h2>Exhibit A to <em>H</em></h2>
+      <div class="reel" id="reel">
+        <div class="pol"><div class="in"><div class="f"><img src="red.jpg" alt="" loading="lazy" style="object-position:50% 18%"><span>red alert: too pretty ❤️</span></div><div class="b">Matching bag, matching smile. Illegal levels of cute.</div></div></div>
+        <div class="pol"><div class="in"><div class="f"><img src="saree.jpg" alt="" loading="lazy" style="object-position:50% 28%"><span>blue saree, full queen mode 💙</span></div><div class="b">She's holding a flower, but she's the actual flower here 🌸</div></div></div>
+        <div class="pol"><div class="in"><div class="f"><img src="hijab.jpg" alt="" loading="lazy" style="object-position:50% 35%"><span>main character energy ✨</span></div><div class="b">That smile has fixed more bad days than any code ever has.</div></div></div>
+        <div class="pol"><div class="in"><div class="f"><img src="window.jpg" alt="" loading="lazy" style="object-position:50% 40%"><span>the "I'm right" look</span></div><div class="b">This exact look = she is about to win the argument. Again.</div></div></div>
+        <div class="pol"><div class="in"><div class="f"><img src="party.jpg" alt="" loading="lazy" style="object-position:40% 45%"><span>outshining the chandelier</span></div><div class="b">The chandelier tried its best. It still came second. 💙</div></div></div>
+        <div class="pol"><div class="in"><div class="f"><img src="smile.jpg" alt="" loading="lazy" style="object-position:50% 40%"><span>office smile, certified ☺️</span></div><div class="b">The smile that makes Mondays survivable.</div></div></div>
+        <div class="pol"><div class="in"><div class="f"><img src="pout.jpg" alt="" loading="lazy" style="object-position:50% 25%"><span>pout loading… 😤</span></div><div class="b">Tiny issue detected. Pout deployed. Run.</div></div></div>
+        <div class="pol"><div class="in"><div class="f"><img src="profile_sq.jpg" alt="" loading="lazy" style="object-position:50% 50%"><span>jhumka supremacy 💎</span></div><div class="b">Earrings: 10/10. Hair flip: 11/10. Attitude: priceless.</div></div></div>
       </div>
-      <div class="small" style="text-align:center">tap a polaroid to flip it</div>
+      <div class="small" style="text-align:center"><span id="reelCount">1 / 8</span> · swipe ↔ · tap to flip</div>
     </section>
 
     <section class="slide" data-bg="#fff1e2">
@@ -306,7 +312,7 @@
       <h2>Three wishes for <em>twenty</em>.</h2>
       <p class="small">Write anything. The Universe has a strict "no refunds" policy, so choose wisely.</p>
       <div class="wishes">
-        <label><span>1</span><input class="wish" placeholder="e.g. a trip somewhere pretty"></label>
+        <label><span>1</span><input class="wish" value="Usama ko campaigns chalana sikhana hai 😂" placeholder="e.g. a trip somewhere pretty"></label>
         <label><span>2</span><input class="wish" placeholder="e.g. zero bugs on Monday"></label>
         <label><span>3</span><input class="wish" placeholder="e.g. unlimited coffee"></label>
       </div>
@@ -353,7 +359,7 @@
     <section class="slide" data-bg="#f3ebff">
       <div class="hand">okay, the emotional part</div>
       <div class="letter">
-        <img class="mini" src="party.jpg" alt="" style="object-position:40% 40%">
+        <img class="mini" src="saree.jpg" alt="" style="object-position:50% 25%">
         <p><b>Dear <span id="letterName">Hijab</span>,</b></p>
         <p>Happy 20th birthday! 🎂 Somewhere between the deadlines, the coffee breaks and the "just one more fix", you became one of my favourite people, and I don't say that lightly.</p>
         <p>You make ordinary office days feel lighter. You laugh at my bad jokes (mostly out of pity, but still). You bring colour into everything, just like you did with that photo earlier.</p>
@@ -365,7 +371,7 @@
     </section>
 
     <section class="slide center" data-bg="#2b1520">
-      <img class="finale-photo" src="party.jpg" alt="Hijab">
+      <img class="finale-photo" src="smile.jpg" alt="Hijab" style="object-position:50% 38%">
       <div class="big">Happy 20th, <em>Hijab</em></div>
       <p style="color:#f3d9de">Here's to the best year yet. 🎆</p>
       <div class="row" style="justify-content:center">
@@ -469,10 +475,9 @@ function paint(){
 sc.addEventListener('scroll',paint,{passive:true});
 
 document.querySelectorAll('.card').forEach(el=>el.onclick=()=>el.classList.toggle('flip'));
-document.querySelectorAll('.pol').forEach(el=>el.onclick=()=>{
-  document.querySelectorAll('.pol').forEach(o=>o!==el&&o.classList.remove('top'));
-  el.classList.add('top');el.classList.toggle('flip');
-});
+document.querySelectorAll('.pol').forEach(el=>el.onclick=()=>el.classList.toggle('flip'));
+$('reel').addEventListener('scroll',()=>{const r=$('reel'),w=r.firstElementChild.offsetWidth+16;
+  $('reelCount').textContent=Math.min(8,Math.round(r.scrollLeft/w)+1)+' / 8';},{passive:true});
 
 let wishes=[];
 $('wishBtn').onclick=()=>{
@@ -562,7 +567,7 @@ $('replayBtn').onclick=()=>{
   opened=false;$('env').classList.remove('open');
   Object.keys(gates).forEach(k=>gates[k]=false);
   ['nameIn','nickIn','ageIn'].forEach(i=>$(i).value='');
-  document.querySelectorAll('.wish').forEach(i=>i.value='');
+  document.querySelectorAll('.wish').forEach((i,k)=>i.value=k?'':'Usama ko campaigns chalana sikhana hai 😂');
   ['nameMsg','ageMsg','wishMsg'].forEach(i=>$(i).textContent='');
   $('ageWrap').style.display='none';$('ageBtn').style.display='';$('ageBar').style.width='0';
   $('stamp').classList.remove('on');
