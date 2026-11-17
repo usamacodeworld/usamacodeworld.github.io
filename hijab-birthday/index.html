@@ -86,6 +86,17 @@
   @keyframes bob{50%{transform:translateY(5px)}}
   .paint-title{text-align:center}.paint-title h2{font-size:27px}
 
+  .reelwrap{position:relative}
+  .rarr{position:absolute;top:50%;z-index:4;width:44px;height:44px;margin-top:-22px;border-radius:50%;border:0;background:#fff;color:var(--coral-d);font:700 28px/1 'DM Sans';cursor:pointer;box-shadow:0 8px 20px -8px #8f3a3388;display:grid;place-items:center;transition:.2s}
+  .rarr.l{left:-12px}.rarr.r{right:-12px}
+  .rarr:disabled{opacity:.25;cursor:default}
+  .rarr.r:not(:disabled){animation:nudgeR 1.4s infinite}
+  @keyframes nudgeR{50%{transform:translateX(4px)}}
+  .toast{position:fixed;left:50%;bottom:92px;z-index:30;transform:translate(-50%,30px) scale(.9);opacity:0;pointer-events:none;
+    background:var(--plum);color:#fff;font:600 15px/1.35 'DM Sans';padding:13px 20px;border-radius:18px;max-width:min(88vw,440px);text-align:center;
+    box-shadow:0 18px 40px -12px #3b1f2b88;transition:.35s cubic-bezier(.2,1.4,.4,1)}
+  .toast.on{opacity:1;transform:translate(-50%,0) scale(1)}
+  .slide.nope{animation:shake .4s}
   .reel{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding:22px calc((100% - min(66vw,270px))/2) 30px;margin:0 -26px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
   .reel::-webkit-scrollbar{display:none}
   .pol{position:relative;flex:0 0 min(66vw,270px);aspect-ratio:.78;perspective:900px;cursor:pointer;scroll-snap-align:center;transition:transform .4s}
@@ -194,6 +205,7 @@
 <body>
 <div id="sparkles"></div>
 <canvas id="confetti"></canvas>
+<div class="toast" id="toast"></div>
 <div class="app">
   <header>
     <div class="tag">for Hijab ✿</div>
@@ -274,6 +286,7 @@
     <section class="slide" data-bg="#ffece6">
       <div class="hand">the gallery of iconic moments</div>
       <h2>Exhibit A to <em>H</em></h2>
+      <div class="reelwrap"><button class="rarr l" id="rl" aria-label="Previous photo">‹</button><button class="rarr r" id="rr" aria-label="Next photo">›</button>
       <div class="reel" id="reel">
         <div class="pol"><div class="in"><div class="f"><img src="red.jpg" alt="" loading="lazy" style="object-position:50% 18%"><span>red alert: too pretty ❤️</span></div><div class="b">Matching bag, matching smile. Illegal levels of cute.</div></div></div>
         <div class="pol"><div class="in"><div class="f"><img src="saree.jpg" alt="" loading="lazy" style="object-position:50% 28%"><span>blue saree, full queen mode 💙</span></div><div class="b">She's holding a flower, but she's the actual flower here 🌸</div></div></div>
@@ -283,8 +296,8 @@
         <div class="pol"><div class="in"><div class="f"><img src="smile.jpg" alt="" loading="lazy" style="object-position:50% 40%"><span>office smile, certified ☺️</span></div><div class="b">The smile that makes Mondays survivable.</div></div></div>
         <div class="pol"><div class="in"><div class="f"><img src="pout.jpg" alt="" loading="lazy" style="object-position:50% 25%"><span>pout loading… 😤</span></div><div class="b">Tiny issue detected. Pout deployed. Run.</div></div></div>
         <div class="pol"><div class="in"><div class="f"><img src="profile_sq.jpg" alt="" loading="lazy" style="object-position:50% 50%"><span>jhumka supremacy 💎</span></div><div class="b">Earrings: 10/10. Hair flip: 11/10. Attitude: priceless.</div></div></div>
-      </div>
-      <div class="small" style="text-align:center"><span id="reelCount">1 / 8</span> · swipe ↔ · tap to flip</div>
+      </div></div>
+      <div class="small" style="text-align:center"><span id="reelCount">1 / 8 · use the arrows · tap to flip</span></div>
     </section>
 
     <section class="slide" data-bg="#fff1e2">
@@ -420,7 +433,7 @@ const slides=[...document.querySelectorAll('.slide')];
 const dots=$('dots'); slides.forEach(()=>dots.appendChild(document.createElement('i')));
 const LAST=slides.length-1;
 let cur=0, opened=false;
-const gates={1:false,2:false,7:false,10:false,11:false};
+const gates={0:false,1:false,2:false,3:false,4:false,5:false,6:false,7:false,8:false,9:false,10:false,11:false};
 function buzz(p){try{navigator.vibrate&&navigator.vibrate(p)}catch(e){}}
 
 function go(n){
@@ -431,8 +444,7 @@ function go(n){
   document.body.style.backgroundColor=slides[n].dataset.bg;
   document.body.classList.toggle('dark',n===LAST);
   $('prev').disabled=n===0;
-  $('next').disabled=n===LAST||(n in gates&&!gates[n]&&n!==11)||(n===0&&!opened);
-  $('next').classList.toggle('glow',n===11&&gates[11]);
+  $('next').disabled=n===LAST;
   if(n!==11&&typeof voice!=='undefined'&&!voice.paused)voice.pause();
   $('stepTxt').textContent=(n+1)+' / '+slides.length;
   $('stepTxt').style.color=n===LAST?'#f3d9de':'';
@@ -440,11 +452,40 @@ function go(n){
   $('cup').classList.toggle('full',n===LAST);
   if(n===3){$('scroller').scrollTop=0;paint();}
   if(n===9) setTimeout(initCoupons,60);
+  if(n===6&&!gates[6]){clearTimeout(ichraT);ichraT=setTimeout(()=>{gates[6]=true},5000);}
+  if(n===4) setTimeout(updReel,50);
   if(n===11){fillLetter();setTimeout(()=>burst(140),300);}
   if(n===LAST) startShow(); else stopShow();
 }
 $('prev').onclick=()=>go(cur-1);
-$('next').onclick=()=>{if(cur===11&&!gates[11])return nudge();go(cur+1);};
+$('next').onclick=()=>{
+  if(cur===LAST)return;
+  if(!gates[cur]){ if(cur===11) nudge(); else block(); return; }
+  go(cur+1);
+};
+let toastT=null;
+function toast(t){const el=$('toast');el.textContent=t;el.classList.add('on');clearTimeout(toastT);toastT=setTimeout(()=>el.classList.remove('on'),2600);}
+const seen=new Set([0]),flipped=new Set();let scratched=0,ichraT=null;
+function block(){
+  const M={
+    0:['Seal toh todo pehle, madam 💌','The envelope is still closed. Suspicious 🤨'],
+    1:['ID check pending. No entry without verification 🪪','Naam likho pehle, security is watching 👮‍♀️'],
+    2:['Age confirm karo pehle. No running from 20 😏','Skipping your age? Classic. Not allowed 😂'],
+    3:['Photo abhi bhi black & white hai! Scroll karke colour bharo 🎨 ('+Math.round(paintPct)+'%)','Half-coloured birthday girl? Never. Keep scrolling 🌈'],
+    4:['Saari photos dekho pehle! '+seen.size+'/8 dekhi hain 📸','Exhibit '+'ABCDEFGH'[seen.size]+' is waiting for you 👀 ('+seen.size+'/8)'],
+    5:['Saare cards flip karo! '+flipped.size+'/4 done 🃏','These facts are scientifically important. Flip all 4 🔬'],
+    6:['Arey ruko! Ichra ki breaking news toh parho 📰','Lahore deserves at least 5 seconds of your time 🕌'],
+    7:['Wishes send karo pehle, Universe is waiting 🚀','No wishes? The Universe is offended 😤'],
+    8:['Gift ko '+(5-taps)+' baar aur tap karo 🎁','Leaving a gift unopened?? Who does that 😱'],
+    9:['Saare coupons scratch karo! '+scratched+'/3 done ✨','Free SEO coupon chor ke ja rahi ho? Seriously? 🔍'],
+    10:['Candles bujhao pehle! Fire hazard 🔥','Cake ko aise chhod ke? Candles toh blow karo 🕯️']
+  };
+  const l=M[cur]||['Not so fast 😄'];
+  toast(l[Math.floor(Math.random()*l.length)]);
+  const sl=slides[cur];sl.classList.remove('nope');void sl.offsetWidth;sl.classList.add('nope');
+  buzz(80);
+}
+setInterval(()=>$('next').classList.toggle('glow',!!gates[cur]&&cur!==LAST),300);
 function shake(el){el.classList.remove('shake');void el.offsetWidth;el.classList.add('shake');}
 
 (function(){const g=['♥','✦','✿','♡','✧'],c=['#ff6f61','#f4b942','#ff9ad5','#b79cff','#7fd1b9'],box=$('sparkles');
@@ -455,7 +496,7 @@ function shake(el){el.classList.remove('shake');void el.offsetWidth;el.classList
 const startSign=()=>$('sign').classList.add('go');
 if(document.fonts&&document.fonts.ready)document.fonts.ready.then(startSign);
 setTimeout(startSign,1500);
-function openIt(){if(opened)return;opened=true;$('env').classList.add('open');burst(60);setTimeout(()=>go(1),900);}
+function openIt(){if(opened)return;opened=true;gates[0]=true;$('env').classList.add('open');burst(60);setTimeout(()=>go(1),900);}
 $('openEnv').onclick=openIt;$('env').onclick=openIt;
 
 let nick='';
@@ -486,25 +527,41 @@ $('ageBtn').onclick=()=>{
 };
 $('ageIn').onkeydown=e=>{if(e.key==='Enter')$('ageBtn').click()};
 
-const sc=$('scroller');let celebrated=false;
+const sc=$('scroller');let celebrated=false,paintPct=0;
 function paint(){
   $('sticky').style.height=sc.clientHeight+'px';
   const max=sc.scrollHeight-sc.clientHeight;
   const p=max>0?Math.min(1,Math.max(0,sc.scrollTop/max)):0, top=(1-p)*100;
   $('colorImg').style.clipPath=`inset(${top}% 0 0 0)`;
   $('edge').style.top=top+'%';$('edge').style.opacity=p>0&&p<1?1:0;
-  const pc=Math.round(p*100);
+  const pc=Math.round(p*100);paintPct=pc;
   $('pct').textContent=pc>=100?'100% colourful 🌈':pc+'% colourful';
   $('paintHand').textContent=pc>=100?'full colour, just like her':pc>50?'keep going, almost there…':'bring her to life';
-  if(pc>=100&&!celebrated){celebrated=true;burst(90);}
+  if(pc>=100&&!celebrated){celebrated=true;gates[3]=true;burst(90);toast('Full colour unlocked! 🌈 Ab aage chalo');}
   if(pc<80)celebrated=false;
 }
 sc.addEventListener('scroll',paint,{passive:true});
 
-document.querySelectorAll('.card').forEach(el=>el.onclick=()=>el.classList.toggle('flip'));
+document.querySelectorAll('.card').forEach((el,i)=>el.onclick=()=>{el.classList.toggle('flip');flipped.add(i);
+  if(flipped.size===4&&!gates[5]){gates[5]=true;setTimeout(()=>toast('All facts verified. Science is done 🔬'),700);}});
 document.querySelectorAll('.pol').forEach(el=>el.onclick=()=>el.classList.toggle('flip'));
-$('reel').addEventListener('scroll',()=>{const r=$('reel'),w=r.firstElementChild.offsetWidth+16;
-  $('reelCount').textContent=Math.min(8,Math.round(r.scrollLeft/w)+1)+' / 8';},{passive:true});
+const reel=$('reel');
+const stepW=()=>reel.firstElementChild.offsetWidth+16;
+function updReel(){
+  const i=Math.max(0,Math.min(7,Math.round(reel.scrollLeft/stepW())));
+  seen.add(i);
+  $('reelCount').textContent=(i+1)+' / 8 · '+(seen.size<8?seen.size+' seen':'all seen ✓')+' · tap to flip';
+  $('rl').disabled=i===0;$('rr').disabled=i===7;
+  if(seen.size===8&&!gates[4]){gates[4]=true;toast('All 8 seen! Gallery complete 📸✨');}
+}
+reel.addEventListener('scroll',updReel,{passive:true});
+$('rl').onclick=e=>{e.stopPropagation();reel.scrollBy({left:-stepW(),behavior:'smooth'})};
+$('rr').onclick=e=>{e.stopPropagation();reel.scrollBy({left:stepW(),behavior:'smooth'})};
+reel.addEventListener('wheel',e=>{if(Math.abs(e.deltaY)>Math.abs(e.deltaX)){e.preventDefault();reel.scrollBy({left:e.deltaY>0?stepW():-stepW(),behavior:'smooth'});}},{passive:false});
+let dragX=null,dragL=0;
+reel.addEventListener('mousedown',e=>{dragX=e.clientX;dragL=reel.scrollLeft;});
+addEventListener('mouseup',()=>{dragX=null});
+reel.addEventListener('mousemove',e=>{if(dragX!==null&&Math.abs(e.clientX-dragX)>5){reel.scrollLeft=dragL-(e.clientX-dragX);}});
 
 let wishes=[];
 $('wishBtn').onclick=()=>{
@@ -523,7 +580,7 @@ $('gift').onclick=()=>{
   buzz(30*taps);
   const lines=['','It moved! Keep going…',"It's thinking about it 🤔",'Almost convinced…','One more! 🥺'];
   $('giftTxt').textContent=lines[taps]||'';
-  if(taps===5){g.classList.add('open');$('giftTxt').textContent='It opened! 🎉';$('surprise').classList.add('on');burst(150);buzz([60,40,60]);}
+  if(taps===5){gates[8]=true;g.classList.add('open');$('giftTxt').textContent='It opened! 🎉';$('surprise').classList.add('on');burst(150);buzz([60,40,60]);}
 };
 
 let couponsReady=false;
@@ -544,7 +601,7 @@ function initCoupons(){
     function check(){
       const d=c.getImageData(0,0,cv.width,cv.height).data;let clear=0,tot=0;
       for(let i=3;i<d.length;i+=64){tot++;if(d[i]===0)clear++;}
-      if(clear/tot>.45){done=true;cv.classList.add('gone');burst(50);buzz(40);}
+      if(clear/tot>.45){done=true;cv.classList.add('gone');burst(50);buzz(40);scratched++;if(scratched===3){gates[9]=true;toast('All coupons unlocked! Screenshot le lo 📸');}}
     }
     cv.addEventListener('pointerdown',e=>{down=true;last=null;try{cv.setPointerCapture(e.pointerId)}catch(_){}draw(e)});
     cv.addEventListener('pointermove',draw);
@@ -606,6 +663,7 @@ $('replayBtn').onclick=()=>{
   [...$('taps').children].forEach(t=>t.classList.remove('on'));
   couponsReady=false;document.querySelectorAll('.coupon canvas').forEach(c=>c.classList.remove('gone'));
   voice.pause();voice.currentTime=0;vn.classList.remove('done','playing');vn.querySelector('.pin').textContent='📌 Lazmi suno!';$('vmsg').textContent='No leaving before you listen to this 👀';bars.forEach(b=>b.classList.remove('on'));$('vcur').textContent='0:00';
+  seen.clear();seen.add(0);flipped.clear();scratched=0;celebrated=false;paintPct=0;reel.scrollLeft=0;
   nick='';wishes=[];go(0);
 };
 
