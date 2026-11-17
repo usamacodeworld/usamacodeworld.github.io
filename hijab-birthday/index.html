@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Happy 20th, Hijab 🎂</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,800;1,9..144,500&family=Caveat:wght@600;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#fff6ef; --coral:#ff6f61; --coral-d:#e2554a; --blush:#ffd9d2;
+    --plum:#3b1f2b; --muted:#8a6a72; --gold:#f4b942; --mint:#bfe8d8;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    font-family:'DM Sans',system-ui,sans-serif;color:var(--plum);
+    background:radial-gradient(120% 80% at 10% 0%,#ffe3dc 0%,transparent 55%),
+               radial-gradient(90% 70% at 100% 100%,#ffe9c7 0%,transparent 55%),var(--cream);
+    overflow:hidden;
+  }
+  .app{position:relative;height:100dvh;max-width:520px;margin:0 auto;display:flex;flex-direction:column}
+  header{display:flex;align-items:center;justify-content:space-between;padding:18px 22px 6px}
+  .tag{font-family:'Caveat',cursive;font-size:22px;color:var(--coral-d)}
+  .dots{display:flex;gap:6px}
+  .dots i{width:7px;height:7px;border-radius:9px;background:#ecd3cc;transition:.35s}
+  .dots i.on{width:22px;background:var(--coral)}
+  .stage{position:relative;flex:1;overflow:hidden}
+  .slide{
+    position:absolute;inset:0;padding:18px 26px 20px;display:flex;flex-direction:column;
+    justify-content:center;gap:18px;opacity:0;pointer-events:none;
+    transform:translateX(40px) scale(.98);transition:opacity .5s ease,transform .5s cubic-bezier(.2,.8,.2,1);
+  }
+  .slide.active{opacity:1;pointer-events:auto;transform:none}
+  .slide.left{transform:translateX(-40px) scale(.98)}
+  h1,h2{font-family:'Fraunces',serif;font-weight:800;line-height:1.05;letter-spacing:-.02em}
+  h1{font-size:clamp(38px,11vw,54px)}
+  h2{font-size:clamp(28px,8vw,38px)}
+  h1 em,h2 em{font-style:italic;font-weight:500;color:var(--coral)}
+  p{font-size:17px;line-height:1.55;color:#5b3d46}
+  .small{font-size:14px;color:var(--muted)}
+  .hand{font-family:'Caveat',cursive;font-size:26px;color:var(--coral-d);line-height:1.2}
+  .btn{
+    align-self:flex-start;border:0;cursor:pointer;font:700 16px 'DM Sans',sans-serif;
+    background:var(--plum);color:#fff;padding:15px 24px;border-radius:999px;
+    box-shadow:0 8px 0 -2px #ffb4a8;transition:transform .15s,box-shadow .15s;
+  }
+  .btn:active{transform:translateY(3px);box-shadow:0 4px 0 -2px #ffb4a8}
+  .btn.coral{background:var(--coral)} .btn.ghost{background:transparent;color:var(--plum);box-shadow:none;padding:15px 6px;text-decoration:underline}
+  .row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+  input{
+    width:100%;font:500 19px 'DM Sans',sans-serif;color:var(--plum);
+    padding:15px 18px;border-radius:16px;border:2px solid #f1d4cc;background:#fff;outline:none;transition:.2s;
+  }
+  input:focus{border-color:var(--coral);box-shadow:0 0 0 5px #ffe0da}
+  .msg{min-height:26px;font-family:'Caveat',cursive;font-size:24px;color:var(--coral-d)}
+  .shake{animation:shake .4s}
+  @keyframes shake{20%,60%{transform:translateX(-7px)}40%,80%{transform:translateX(7px)}}
+
+  /* envelope */
+  .env{width:210px;height:140px;position:relative;margin:0 auto 8px;cursor:pointer}
+  .env .body{position:absolute;inset:0;background:#ffcfc6;border-radius:10px;box-shadow:0 18px 40px -18px #b5524a}
+  .env .flap{position:absolute;left:0;right:0;top:0;height:90px;background:#ffb3a7;clip-path:polygon(0 0,100% 0,50% 100%);transform-origin:top;transition:transform .6s;border-radius:10px 10px 0 0}
+  .env .seal{position:absolute;left:50%;top:62px;width:44px;height:44px;margin-left:-22px;border-radius:50%;background:var(--coral);display:grid;place-items:center;color:#fff;font:800 15px 'Fraunces',serif;transition:.4s;box-shadow:0 4px 10px #c4473d66}
+  .env.open .flap{transform:rotateX(180deg)} .env.open .seal{transform:scale(0) rotate(90deg)}
+  .float{animation:float 3s ease-in-out infinite}
+  @keyframes float{50%{transform:translateY(-8px)}}
+
+  /* age bar */
+  .bar{height:16px;border-radius:99px;background:#f6dcd5;overflow:hidden}
+  .bar b{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--coral),var(--gold));border-radius:99px;transition:width 1.8s cubic-bezier(.3,.7,.2,1)}
+  .stats{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .stat{background:#fff;border-radius:16px;padding:12px 14px;border:1.5px solid #f6ddd6}
+  .stat b{display:block;font:800 22px 'Fraunces',serif;color:var(--coral-d)}
+  .stat span{font-size:13px;color:var(--muted)}
+
+  /* paint slide */
+  .paint{padding:0}
+  .scroller{position:absolute;inset:0;overflow-y:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .scroller::-webkit-scrollbar{display:none}
+  .track{height:320%}
+  .sticky{position:sticky;top:0;height:calc(100dvh - 140px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:0 26px}
+  .frame{position:relative;height:min(58vh,440px);aspect-ratio:517/919;border-radius:26px;overflow:hidden;box-shadow:0 30px 50px -25px #8f3a33;border:6px solid #fff;transform:rotate(-2deg)}
+  .frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .frame .gray{filter:grayscale(1) contrast(1.05) brightness(1.05)}
+  .frame .color{clip-path:inset(100% 0 0 0)}
+  .frame .edge{position:absolute;left:-10%;right:-10%;height:26px;margin-top:-13px;top:100%;
+    background:radial-gradient(closest-side,#ff6f61aa,transparent);filter:blur(4px);pointer-events:none}
+  .pct{font:800 15px 'DM Sans';background:#fff;padding:7px 14px;border-radius:99px;border:1.5px solid #f6ddd6}
+  .hint{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--muted)}
+  .hint i{display:inline-block;animation:bob 1.4s infinite}
+  @keyframes bob{50%{transform:translateY(5px)}}
+  .paint-title{text-align:center}
+  .paint-title h2{font-size:28px}
+
+  /* ichra */
+  .scene{border-radius:24px;overflow:hidden;box-shadow:0 22px 40px -24px #8f3a33;background:#fff}
+  .scene svg{display:block;width:100%;height:auto}
+  .news{background:var(--plum);color:#fff;font-size:13px;padding:9px 0;overflow:hidden;white-space:nowrap}
+  .news span{display:inline-block;padding-left:100%;animation:ticker 16s linear infinite}
+  @keyframes ticker{to{transform:translateX(-100%)}}
+  .rick{animation:drive 7s linear infinite}
+  @keyframes drive{from{transform:translateX(380px)}to{transform:translateX(-140px)}}
+  .twinkle{animation:tw 1.6s infinite alternate}
+  @keyframes tw{to{opacity:.35}}
+
+  /* wishes */
+  .wishes{display:flex;flex-direction:column;gap:10px}
+  .wishes label{display:flex;align-items:center;gap:10px}
+  .wishes label span{font:800 18px 'Fraunces';color:var(--coral);width:22px}
+  .stamp{position:absolute;right:22px;top:38%;font:800 26px 'Fraunces';color:var(--coral-d);border:4px solid var(--coral-d);padding:6px 14px;border-radius:10px;transform:rotate(-14deg) scale(2.5);opacity:0;transition:.35s cubic-bezier(.2,1.6,.4,1);pointer-events:none;background:#fff8}
+  .stamp.on{opacity:1;transform:rotate(-14deg) scale(1)}
+
+  /* cake */
+  .cake{position:relative;width:230px;height:220px;margin:6px auto 0}
+  .tier{position:absolute;left:50%;transform:translateX(-50%);border-radius:14px}
+  .t1{bottom:0;width:230px;height:80px;background:#ff9f93}
+  .t2{bottom:72px;width:170px;height:70px;background:#ffd2c9}
+  .drip{position:absolute;left:0;right:0;top:0;height:22px;background:#fff;border-radius:14px 14px 0 0;
+    -webkit-mask:radial-gradient(12px 14px at 12px 22px,transparent 98%,#000) -12px 0/24px 100%;mask:radial-gradient(12px 14px at 12px 22px,transparent 98%,#000) -12px 0/24px 100%}
+  .plate{position:absolute;bottom:-10px;left:50%;transform:translateX(-50%);width:270px;height:16px;border-radius:50%;background:#f0d9d3}
+  .candles{position:absolute;bottom:140px;left:50%;transform:translateX(-50%);display:flex;gap:34px}
+  .candle{position:relative;cursor:pointer;display:flex;flex-direction:column;align-items:center}
+  .candle .num{font:800 54px/1 'Fraunces';color:var(--gold);-webkit-text-stroke:2px #d89a1f}
+  .flame{width:16px;height:26px;background:radial-gradient(circle at 50% 70%,#fff6b0,#ffb52e 55%,#ff6f2e);border-radius:50% 50% 50% 50%/60% 60% 40% 40%;animation:flick .25s infinite alternate;margin-bottom:2px;transition:.3s}
+  @keyframes flick{to{transform:scaleY(1.12) rotate(3deg)}}
+  .candle.out .flame{transform:scale(0);opacity:0}
+  .smoke{position:absolute;top:-8px;width:8px;height:8px;border-radius:50%;background:#bbb;opacity:0}
+  .candle.out .smoke{animation:smoke 1.2s forwards}
+  @keyframes smoke{0%{opacity:.7}100%{opacity:0;transform:translateY(-40px) scale(3)}}
+  .center{text-align:center;align-items:center}
+  .center .btn{align-self:center}
+
+  /* letter */
+  .letter{background:#fff;border-radius:22px;padding:22px 22px 18px;box-shadow:0 24px 50px -28px #8f3a33;border:1.5px solid #f6ddd6;max-height:62vh;overflow:auto;position:relative}
+  .letter p{font-size:16px;margin-bottom:12px}
+  .letter .sig{font-family:'Caveat',cursive;font-size:30px;color:var(--coral-d);margin:4px 0 0}
+  .mini{width:64px;height:64px;border-radius:50%;object-fit:cover;border:3px solid var(--blush);float:right;margin:0 0 8px 10px}
+  .chips{display:flex;flex-wrap:wrap;gap:6px;margin:-4px 0 12px}
+  .chips span{background:var(--blush);padding:5px 11px;border-radius:99px;font-size:13px;font-weight:500}
+
+  footer{display:flex;justify-content:space-between;align-items:center;padding:10px 22px 22px}
+  .nav{border:0;background:#fff;width:48px;height:48px;border-radius:50%;font-size:20px;cursor:pointer;border:1.5px solid #f1d4cc;color:var(--plum)}
+  .nav:disabled{opacity:.3;cursor:default}
+  #confetti{position:fixed;inset:0;pointer-events:none;z-index:20}
+</style>
+</head>
+<body>
+<canvas id="confetti"></canvas>
+<div class="app">
+  <header>
+    <div class="tag">for Hijab ✿</div>
+    <div class="dots" id="dots"></div>
+  </header>
+
+  <div class="stage" id="stage">
+
+    <!-- 0 envelope -->
+    <section class="slide active center">
+      <div class="env float" id="env"><div class="body"></div><div class="flap"></div><div class="seal">HF</div></div>
+      <div class="hand">top secret · deliver on 19 November</div>
+      <h1>Psst… <em>someone</em> is turning twenty.</h1>
+      <p>This package can only be opened by one person. Security is very tight. (It's just me. I'm the security.)</p>
+      <button class="btn coral" id="openEnv">Break the seal 💌</button>
+    </section>
+
+    <!-- 1 identity -->
+    <section class="slide">
+      <div class="hand">step 1 · identity check</div>
+      <h2>First things first. <em>Who goes there?</em></h2>
+      <p>Type your name so I know it's really the birthday girl and not some random person from accounts.</p>
+      <input id="nameIn" placeholder="Your name" autocomplete="off">
+      <input id="nickIn" placeholder="What should I call you today? (optional)" autocomplete="off">
+      <div class="msg" id="nameMsg"></div>
+      <button class="btn" id="nameBtn">Verify me ✨</button>
+    </section>
+
+    <!-- 2 age -->
+    <section class="slide">
+      <div class="hand">step 2 · the scary question</div>
+      <h2>How old are you turning, <em id="nickShow">birthday girl</em>?</h2>
+      <input id="ageIn" type="number" inputmode="numeric" placeholder="Be honest 👀">
+      <div class="msg" id="ageMsg"></div>
+      <div id="ageWrap" style="display:none;flex-direction:column;gap:12px">
+        <div class="small">Upgrading Hijab v19 → v20…</div>
+        <div class="bar"><b id="ageBar"></b></div>
+        <div class="stats">
+          <div class="stat"><b>365</b><span>days of being awesome</span></div>
+          <div class="stat"><b>∞</b><span>cups of coffee ☕</span></div>
+          <div class="stat"><b>0</b><span>teenage years left 😭</span></div>
+          <div class="stat"><b>100%</b><span>cuteness retained</span></div>
+        </div>
+      </div>
+      <button class="btn" id="ageBtn">Confirm age</button>
+    </section>
+
+    <!-- 3 paint -->
+    <section class="slide paint" id="paintSlide">
+      <div class="scroller" id="scroller">
+        <div class="track">
+          <div class="sticky">
+            <div class="paint-title">
+              <div class="hand" id="paintHand">step 3 · bring her to life</div>
+              <h2>Scroll to <em>colour</em> the birthday girl</h2>
+            </div>
+            <div class="frame">
+              <img class="gray" src="hijab.jpg" alt="Hijab">
+              <img class="color" id="colorImg" src="hijab.jpg" alt="">
+              <div class="edge" id="edge"></div>
+            </div>
+            <div class="row" style="justify-content:center">
+              <span class="pct" id="pct">0% colourful</span>
+              <span class="hint"><i>↕</i> scroll up &amp; down</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4 ichra -->
+    <section class="slide">
+      <div class="hand">step 4 · live from Lahore</div>
+      <div class="scene">
+        <svg viewBox="0 0 360 220" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#ffb199"/><stop offset=".6" stop-color="#ffd9c2"/><stop offset="1" stop-color="#fff1e4"/>
+            </linearGradient>
+          </defs>
+          <rect width="360" height="220" fill="url(#sky)"/>
+          <circle cx="292" cy="56" r="26" fill="#fff3c4" opacity=".9"/>
+          <!-- birds -->
+          <path d="M120 40q6-6 12 0q6-6 12 0M160 58q4-4 8 0q4-4 8 0" stroke="#7a3d3d" stroke-width="1.6" fill="none"/>
+          <!-- Minar-e-Pakistan -->
+          <g fill="#c96458">
+            <rect x="34" y="176" width="72" height="14" rx="2"/>
+            <polygon points="52,176 88,176 76,70 64,70"/>
+            <rect x="61" y="62" width="18" height="10" rx="2"/>
+            <ellipse cx="70" cy="60" rx="9" ry="7"/>
+            <rect x="69" y="40" width="2" height="16"/>
+          </g>
+          <g stroke="#e8897d" stroke-width="1.2"><line x1="58" y1="140" x2="82" y2="140"/><line x1="61" y1="110" x2="79" y2="110"/><line x1="63" y1="88" x2="77" y2="88"/></g>
+          <!-- Badshahi mosque -->
+          <g fill="#a94d4a">
+            <rect x="160" y="150" width="150" height="40"/>
+            <rect x="150" y="96" width="8" height="94"/><rect x="312" y="96" width="8" height="94"/>
+            <ellipse cx="154" cy="94" rx="8" ry="6"/><ellipse cx="316" cy="94" rx="8" ry="6"/>
+            <path d="M210 150 a25 30 0 0 1 50 0z"/>
+            <path d="M178 150 a16 20 0 0 1 32 0z"/>
+            <path d="M260 150 a16 20 0 0 1 32 0z"/>
+            <rect x="234" y="112" width="2" height="10"/>
+          </g>
+          <g fill="#ffe2d6"><path d="M228 190v-20a7 7 0 0 1 14 0v20z"/><path d="M190 190v-14a5 5 0 0 1 10 0v14z"/><path d="M270 190v-14a5 5 0 0 1 10 0v14z"/></g>
+          <!-- string lights -->
+          <path d="M0 18 Q90 52 180 22 T360 26" stroke="#7a3d3d" stroke-width="1" fill="none"/>
+          <g class="twinkle">
+            <circle cx="30" cy="27" r="3.4" fill="#ffd34d"/><circle cx="90" cy="38" r="3.4" fill="#ff6f61"/>
+            <circle cx="150" cy="30" r="3.4" fill="#7fd1b9"/><circle cx="210" cy="22" r="3.4" fill="#ffd34d"/>
+            <circle cx="270" cy="30" r="3.4" fill="#ff6f61"/><circle cx="330" cy="26" r="3.4" fill="#7fd1b9"/>
+          </g>
+          <!-- road -->
+          <rect y="190" width="360" height="30" fill="#5a3a3f"/>
+          <g stroke="#ffd9c2" stroke-width="3" stroke-dasharray="16 14"><line x1="0" y1="205" x2="360" y2="205"/></g>
+          <!-- sign -->
+          <g transform="translate(118 150)">
+            <rect x="-2" y="0" width="4" height="40" fill="#7a3d3d"/>
+            <rect x="-30" y="-16" width="60" height="20" rx="4" fill="#2f7d5b"/>
+            <text x="0" y="-2" text-anchor="middle" font-family="DM Sans" font-weight="700" font-size="10" fill="#fff">ICHRA ➜</text>
+          </g>
+          <!-- rickshaw -->
+          <g class="rick">
+            <g transform="translate(0 168)">
+              <path d="M8 26 V10 Q10 0 26 0 H52 Q60 0 62 10 L66 26z" fill="#ffcf3f"/>
+              <rect x="4" y="0" width="58" height="6" rx="3" fill="#2b2b2b"/>
+              <rect x="30" y="8" width="16" height="12" rx="2" fill="#bfe8d8"/>
+              <circle cx="16" cy="28" r="6" fill="#2b2b2b"/><circle cx="58" cy="28" r="6" fill="#2b2b2b"/>
+              <text x="36" y="-5" text-anchor="middle" font-family="Caveat" font-size="13" fill="#3b1f2b">HBD Hijab!</text>
+            </g>
+          </g>
+        </svg>
+        <div class="news"><span>BREAKING: Traffic on Ferozepur Road slowed due to excessive cuteness in Ichra ✦ Coffee sales in Ichra up 300% ✦ Local girl turns 20, bazaar declares holiday ✦ Dupatta wala uncle says "aaj ki sab se pyari customer" ✦</span></div>
+      </div>
+      <h2>From the lanes of <em>Ichra</em> to everyone's heart</h2>
+      <p>Lahore has the Minar, the Badshahi Masjid, the food… and now it has a 20-year-old Hijab. Honestly, the city's ranking just went up.</p>
+    </section>
+
+    <!-- 5 wishes -->
+    <section class="slide">
+      <div class="hand">step 5 · the wish department</div>
+      <h2>Three wishes for <em>twenty</em>.</h2>
+      <p class="small">Write anything. The Universe has a strict "no refunds" policy, so choose wisely.</p>
+      <div class="wishes">
+        <label><span>1</span><input class="wish" placeholder="e.g. a trip somewhere pretty"></label>
+        <label><span>2</span><input class="wish" placeholder="e.g. zero bugs on Monday"></label>
+        <label><span>3</span><input class="wish" placeholder="e.g. unlimited biryani"></label>
+      </div>
+      <div class="msg" id="wishMsg"></div>
+      <button class="btn coral" id="wishBtn">Send to the Universe 🚀</button>
+      <div class="stamp" id="stamp">APPROVED ✓</div>
+    </section>
+
+    <!-- 6 cake -->
+    <section class="slide center">
+      <div class="hand">step 6 · the important bit</div>
+      <h2>Make a wish &amp; <em>tap</em> the candles</h2>
+      <div class="cake">
+        <div class="candles">
+          <div class="candle" data-c><div class="smoke"></div><div class="flame"></div><div class="num">2</div></div>
+          <div class="candle" data-c><div class="smoke"></div><div class="flame"></div><div class="num">0</div></div>
+        </div>
+        <div class="plate"></div>
+        <div class="tier t1"><div class="drip"></div></div>
+        <div class="tier t2"><div class="drip"></div></div>
+      </div>
+      <div class="msg" id="cakeMsg">psst… both of them 🕯️</div>
+    </section>
+
+    <!-- 7 letter -->
+    <section class="slide">
+      <div class="hand">step 7 · okay, the emotional part</div>
+      <div class="letter">
+        <img class="mini" src="hijab.jpg" alt="">
+        <p><b>Dear <span id="letterName">Hijab</span>,</b></p>
+        <p>Happy 20th birthday! 🎂 Somewhere between the deadlines, the coffee breaks and the "just one more fix", you became one of my favourite people, and I don't say that lightly.</p>
+        <p>You make ordinary office days feel lighter. You laugh at my bad jokes (mostly out of pity, but still). You bring colour into everything, just like you did with that photo a minute ago.</p>
+        <div id="wishEcho"></div>
+        <p>Twenty looks good on you. I hope this year treats you as kindly as you treat everyone around you. And just so it's on record: I love you sooo much. ❤️</p>
+        <p class="sig">— Usama</p>
+      </div>
+      <div class="row">
+        <button class="btn coral" id="partyBtn">One more confetti 🎉</button>
+        <button class="btn ghost" id="replayBtn">Start over</button>
+      </div>
+    </section>
+
+  </div>
+
+  <footer>
+    <button class="nav" id="prev" aria-label="Back">←</button>
+    <span class="small" id="stepTxt"></span>
+    <button class="nav" id="next" aria-label="Next">→</button>
+  </footer>
+</div>
+
+<script>
+const slides=[...document.querySelectorAll('.slide')];
+const dots=document.getElementById('dots');
+slides.forEach(()=>dots.appendChild(document.createElement('i')));
+let cur=0, unlocked=0; // highest step she may freely reach
+const gates={1:false,2:false,5:false,6:false}; // steps that need an action before Next
+const $=id=>document.getElementById(id);
+
+function go(n){
+  if(n<0||n>=slides.length) return;
+  slides.forEach((s,i)=>{s.classList.toggle('active',i===n);s.classList.toggle('left',i<n)});
+  cur=n; unlocked=Math.max(unlocked,n);
+  [...dots.children].forEach((d,i)=>d.classList.toggle('on',i===n));
+  $('prev').disabled=n===0;
+  $('next').disabled=n===slides.length-1||(n in gates&&!gates[n])||n===0&&!opened;
+  $('stepTxt').textContent=(n+1)+' / '+slides.length;
+  if(n===3){const sc=$('scroller');sc.scrollTop=0;paint();}
+  if(n===7){fillLetter();setTimeout(()=>burst(160),300);}
+}
+$('prev').onclick=()=>go(cur-1);
+$('next').onclick=()=>go(cur+1);
+function shake(el){el.classList.remove('shake');void el.offsetWidth;el.classList.add('shake');}
+
+/* 0 envelope */
+let opened=false;
+function openIt(){ if(opened) return; opened=true; $('env').classList.add('open'); burst(60); setTimeout(()=>go(1),900); }
+$('openEnv').onclick=openIt; $('env').onclick=openIt;
+
+/* 1 identity */
+let nick='';
+$('nameBtn').onclick=()=>{
+  const v=$('nameIn').value.trim().toLowerCase();
+  if(!v){$('nameMsg').textContent='Empty? Even ghosts have names 👻';return shake($('nameIn'));}
+  if(v.includes('hijab')||v.includes('fatima')){
+    nick=$('nickIn').value.trim();
+    $('nameMsg').textContent='Identity confirmed. Hello, birthday girl! 💖';
+    $('nickShow').textContent=nick||'Hijab';
+    gates[1]=true; setTimeout(()=>go(2),900);
+  } else {
+    const r=['Hmm… nice try, impostor 🕵️‍♀️','That is NOT the birthday girl. Try again 👀','Access denied. Only Hijab allowed beyond this point 🚫'];
+    $('nameMsg').textContent=r[Math.floor(Math.random()*r.length)]; shake($('nameIn'));
+  }
+};
+$('nameIn').onkeydown=e=>{if(e.key==='Enter')$('nameBtn').click()};
+
+/* 2 age */
+$('ageBtn').onclick=()=>{
+  const a=parseInt($('ageIn').value,10);
+  if(isNaN(a)){$('ageMsg').textContent='Numbers only, madam 🔢';return shake($('ageIn'));}
+  if(a<20){$('ageMsg').textContent=a===19?'19? That was yesterday. Literally. 😏':'Haha, the calendar disagrees 📅';return shake($('ageIn'));}
+  if(a>20){$('ageMsg').textContent='Whoa, no fast-forwarding! Stay young a little longer ⏪';return shake($('ageIn'));}
+  $('ageMsg').textContent='Correct! Officially out of the teens 🎓';
+  $('ageWrap').style.display='flex'; $('ageBtn').style.display='none';
+  requestAnimationFrame(()=>$('ageBar').style.width='100%');
+  gates[2]=true; $('next').disabled=false;
+};
+$('ageIn').onkeydown=e=>{if(e.key==='Enter')$('ageBtn').click()};
+
+/* 3 paint on scroll */
+const sc=$('scroller');
+let celebrated=false;
+function paint(){
+  document.querySelector('.sticky').style.height=sc.clientHeight+'px';
+  const max=sc.scrollHeight-sc.clientHeight;
+  const p=max>0?Math.min(1,Math.max(0,sc.scrollTop/max)):0;
+  const top=(1-p)*100;
+  $('colorImg').style.clipPath=`inset(${top}% 0 0 0)`;
+  $('edge').style.top=top+'%'; $('edge').style.opacity=p>0&&p<1?1:0;
+  const pc=Math.round(p*100);
+  $('pct').textContent=pc>=100?'100% colourful 🌈':pc+'% colourful';
+  $('paintHand').textContent=pc>=100?'full colour, just like her':pc>50?'keep going, almost there…':'step 3 · bring her to life';
+  if(pc>=100&&!celebrated){celebrated=true;burst(90);}
+  if(pc<80) celebrated=false;
+}
+sc.addEventListener('scroll',paint,{passive:true});
+
+/* 5 wishes */
+let wishes=[];
+$('wishBtn').onclick=()=>{
+  wishes=[...document.querySelectorAll('.wish')].map(i=>i.value.trim()).filter(Boolean);
+  if(!wishes.length){$('wishMsg').textContent='The Universe needs at least one wish 🙄';return;}
+  $('stamp').classList.add('on');
+  $('wishMsg').textContent=wishes.length<3?'Approved! (You left a wish unused, very humble of you)':'All 3 approved. Delivery: within 365 days 📦';
+  gates[5]=true; $('next').disabled=false;
+};
+
+/* 6 cake */
+document.querySelectorAll('[data-c]').forEach(c=>c.onclick=()=>{
+  c.classList.add('out');
+  const left=document.querySelectorAll('[data-c]:not(.out)').length;
+  if(left){$('cakeMsg').textContent='one more… blow harder! 💨';}
+  else{$('cakeMsg').textContent='Wish locked in. Happy birthday! 🎉';burst(200);gates[6]=true;$('next').disabled=false;setTimeout(()=>go(7),2200);}
+});
+
+/* 7 letter */
+function esc(s){return s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
+function fillLetter(){
+  $('letterName').textContent=nick||'Hijab';
+  $('wishEcho').innerHTML=wishes.length?
+    '<p>And about those wishes you just sent off, I really hope you get every single one:</p><div class="chips">'+wishes.map(w=>'<span>✦ '+esc(w)+'</span>').join('')+'</div>':'';
+}
+$('partyBtn').onclick=()=>burst(220);
+$('replayBtn').onclick=()=>{
+  opened=false;$('env').classList.remove('open');
+  Object.keys(gates).forEach(k=>gates[k]=false);
+  ['nameIn','nickIn','ageIn'].forEach(i=>$(i).value='');
+  document.querySelectorAll('.wish').forEach(i=>i.value='');
+  ['nameMsg','ageMsg','wishMsg'].forEach(i=>$(i).textContent='');
+  $('ageWrap').style.display='none';$('ageBtn').style.display='';$('ageBar').style.width='0';
+  $('stamp').classList.remove('on');
+  document.querySelectorAll('[data-c]').forEach(c=>c.classList.remove('out'));
+  $('cakeMsg').textContent='psst… both of them 🕯️';
+  nick='';wishes=[];go(0);
+};
+
+/* confetti */
+const cv=$('confetti'),cx=cv.getContext('2d');let parts=[];
+function size(){cv.width=innerWidth*devicePixelRatio;cv.height=innerHeight*devicePixelRatio;cx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0)}
+size();addEventListener('resize',size);
+const cols=['#ff6f61','#f4b942','#7fd1b9','#ffb3a7','#3b1f2b','#ff9ad5'];
+function burst(n){
+  for(let i=0;i<n;i++)parts.push({x:innerWidth/2+(Math.random()-.5)*120,y:innerHeight*.4,vx:(Math.random()-.5)*12,vy:-Math.random()*13-4,
+    r:Math.random()*6+4,c:cols[i%cols.length],a:Math.random()*6,s:Math.random()*.3-.15,heart:Math.random()<.25,life:0});
+  if(!loopOn)loop();
+}
+let loopOn=false;
+function heart(x,y,r){cx.beginPath();cx.moveTo(x,y+r*.3);cx.bezierCurveTo(x,y-r*.3,x-r,y-r*.3,x-r,y+r*.2);cx.bezierCurveTo(x-r,y+r*.7,x,y+r,x,y+r*1.2);cx.bezierCurveTo(x,y+r,x+r,y+r*.7,x+r,y+r*.2);cx.bezierCurveTo(x+r,y-r*.3,x,y-r*.3,x,y+r*.3);cx.fill()}
+function loop(){
+  loopOn=true;cx.clearRect(0,0,innerWidth,innerHeight);
+  parts=parts.filter(p=>p.y<innerHeight+40&&p.life<400);
+  parts.forEach(p=>{p.vy+=.28;p.vx*=.99;p.x+=p.vx;p.y+=p.vy;p.a+=p.s;p.life++;
+    cx.save();cx.translate(p.x,p.y);cx.rotate(p.a);cx.fillStyle=p.c;
+    if(p.heart)heart(0,0,p.r*.8);else cx.fillRect(-p.r/2,-p.r/4,p.r,p.r/2);cx.restore();});
+  if(parts.length)requestAnimationFrame(loop);else{loopOn=false;cx.clearRect(0,0,innerWidth,innerHeight)}
+}
+
+go(0);
+</script>
+</body>
+</html>
