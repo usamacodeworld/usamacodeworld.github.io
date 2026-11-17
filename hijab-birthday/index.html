@@ -58,10 +58,11 @@
   @keyframes shake{20%,60%{transform:translateX(-7px)}40%,80%{transform:translateX(7px)}}
 
   /* envelope */
-  .env{width:210px;height:140px;position:relative;margin:0 auto 8px;cursor:pointer}
+  .env{width:230px;height:150px;position:relative;margin:0 auto 8px;cursor:pointer}
   .env .body{position:absolute;inset:0;background:#ffcfc6;border-radius:10px;box-shadow:0 18px 40px -18px #b5524a}
   .env .flap{position:absolute;left:0;right:0;top:0;height:90px;background:#ffb3a7;clip-path:polygon(0 0,100% 0,50% 100%);transform-origin:top;transition:transform .6s;border-radius:10px 10px 0 0}
-  .env .seal{position:absolute;left:50%;top:62px;width:44px;height:44px;margin-left:-22px;border-radius:50%;background:var(--coral);display:grid;place-items:center;color:#fff;font:800 15px 'Fraunces',serif;transition:.4s;box-shadow:0 4px 10px #c4473d66}
+  .env .seal{position:absolute;left:50%;top:34px;width:96px;height:96px;margin-left:-48px;border-radius:50%;overflow:hidden;border:4px solid #fff;outline:3px solid var(--coral);background:var(--coral);transition:.4s;box-shadow:0 8px 18px #c4473d66}
+  .env .seal img{width:100%;height:100%;object-fit:cover;display:block}
   .env.open .flap{transform:rotateX(180deg)} .env.open .seal{transform:scale(0) rotate(90deg)}
   .float{animation:float 3s ease-in-out infinite}
   @keyframes float{50%{transform:translateY(-8px)}}
@@ -157,7 +158,7 @@
 
     <!-- 0 envelope -->
     <section class="slide active center">
-      <div class="env float" id="env"><div class="body"></div><div class="flap"></div><div class="seal">HF</div></div>
+      <div class="env float" id="env"><div class="body"></div><div class="flap"></div><div class="seal"><img src="profile.jpg" alt="Hijab"></div></div>
       <div class="hand">top secret · deliver on 19 November</div>
       <h1>Psst… <em>someone</em> is turning twenty.</h1>
       <p>This package can only be opened by one person. Security is very tight. (It's just me. I'm the security.)</p>
