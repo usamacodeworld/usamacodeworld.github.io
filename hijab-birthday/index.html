@@ -156,11 +156,27 @@
   .smoke{position:absolute;top:-8px;width:8px;height:8px;border-radius:50%;background:#bbb;opacity:0}
   .candle.out .smoke{animation:smoke 1.2s forwards} @keyframes smoke{0%{opacity:.7}100%{opacity:0;transform:translateY(-40px) scale(3)}}
 
-  .letter{background:#fff;border-radius:22px;padding:20px 20px 14px;box-shadow:0 24px 50px -28px #8f3a33;border:1.5px solid #f6ddd6;max-height:56vh;overflow:auto}
+  .letter{background:#fff;border-radius:22px;padding:20px 20px 14px;box-shadow:0 24px 50px -28px #8f3a33;border:1.5px solid #f6ddd6;max-height:42vh;overflow:auto}
   .letter p{font-size:15.5px;margin-bottom:11px}
   .letter .sig{font-family:'Caveat',cursive;font-size:30px;color:var(--coral-d);margin:2px 0 0}
   .mini{width:64px;height:64px;border-radius:50%;object-fit:cover;border:3px solid var(--blush);float:right;margin:0 0 8px 10px}
   .chips{display:flex;flex-wrap:wrap;gap:6px;margin:-4px 0 11px} .chips span{background:var(--blush);padding:5px 11px;border-radius:99px;font-size:13px;font-weight:500}
+  .vn{position:relative;display:flex;align-items:center;gap:12px;background:#fff;border-radius:20px;padding:14px;border:2px solid var(--coral)}
+  .vn:not(.done){animation:ring 1.6s infinite}
+  @keyframes ring{0%{box-shadow:0 0 0 0 #ff6f6199}70%{box-shadow:0 0 0 16px #ff6f6100}100%{box-shadow:0 0 0 0 #ff6f6100}}
+  .vn.done{border-color:#7fd1b9}
+  .pin{position:absolute;top:-13px;right:14px;background:var(--plum);color:#fff;font:700 12px 'DM Sans';padding:5px 11px;border-radius:99px;animation:wig 1.8s infinite}
+  .vn.done .pin{background:#2f9d77;animation:none}
+  @keyframes wig{0%,100%{transform:rotate(3deg)}50%{transform:rotate(-4deg) scale(1.06)}}
+  .vplay{flex:0 0 54px;height:54px;border-radius:50%;border:0;background:var(--coral);color:#fff;font-size:20px;cursor:pointer;box-shadow:0 6px 14px -6px #c4473d}
+  .vbody{flex:1;min-width:0}.vbody b{font:800 15px 'Fraunces';display:block}
+  .wave{display:flex;align-items:center;gap:2px;height:30px;margin:6px 0 2px}
+  .wave i{flex:1;background:#f0d2ca;border-radius:2px;transition:background .2s}
+  .wave i.on{background:var(--coral)}
+  .vn.playing .wave i.on{animation:bounce .6s infinite alternate}
+  @keyframes bounce{to{transform:scaleY(.6)}}
+  .vtime{font-size:12px;color:var(--muted)}
+  .nav.glow{background:var(--coral);color:#fff;border-color:var(--coral);animation:ring 1.4s infinite}
   .song{display:flex;align-items:center;gap:10px;background:#fff;border:1.5px solid #f3d9d2;border-radius:99px;padding:6px 16px 6px 6px;cursor:pointer;align-self:flex-start;font:600 14px 'DM Sans';color:var(--plum)}
   .song i{width:36px;height:36px;border-radius:50%;background:var(--coral);color:#fff;display:grid;place-items:center;font-style:normal}
   .song.playing i{animation:pulse 1s infinite} @keyframes pulse{50%{transform:scale(1.12)}}
@@ -367,7 +383,16 @@
         <p>Twenty looks good on you. I hope this year treats you as kindly as you treat everyone around you. And just so it's on record: I love you sooo much. ❤️</p>
         <p class="sig">— Usama</p>
       </div>
-      <button class="song" id="song"><i>▶</i><span>Play your birthday song</span></button>
+      <div class="vn" id="vn">
+        <div class="pin">📌 Lazmi suno!</div>
+        <button class="vplay" id="vplay" aria-label="Play voice note">▶</button>
+        <div class="vbody"><b>A voice note from Usama 🎧</b>
+          <div class="wave" id="wave"><i style="height:30%"></i><i style="height:55%"></i><i style="height:80%"></i><i style="height:45%"></i><i style="height:95%"></i><i style="height:60%"></i><i style="height:35%"></i><i style="height:70%"></i><i style="height:90%"></i><i style="height:50%"></i><i style="height:40%"></i><i style="height:75%"></i><i style="height:100%"></i><i style="height:65%"></i><i style="height:30%"></i><i style="height:55%"></i><i style="height:85%"></i><i style="height:45%"></i><i style="height:70%"></i><i style="height:95%"></i><i style="height:40%"></i><i style="height:60%"></i><i style="height:80%"></i><i style="height:35%"></i><i style="height:55%"></i><i style="height:75%"></i><i style="height:45%"></i><i style="height:30%"></i></div>
+          <div class="vtime"><span id="vcur">0:00</span> / <span id="vdur">2:57</span></div>
+        </div>
+        <audio id="voice" src="voice.mp3" preload="metadata"></audio>
+      </div>
+      <div class="msg" id="vmsg" style="font-size:21px;margin-top:-6px">No leaving before you listen to this 👀</div>
     </section>
 
     <section class="slide center" data-bg="#2b1520">
@@ -395,7 +420,7 @@ const slides=[...document.querySelectorAll('.slide')];
 const dots=$('dots'); slides.forEach(()=>dots.appendChild(document.createElement('i')));
 const LAST=slides.length-1;
 let cur=0, opened=false;
-const gates={1:false,2:false,7:false,10:false};
+const gates={1:false,2:false,7:false,10:false,11:false};
 function buzz(p){try{navigator.vibrate&&navigator.vibrate(p)}catch(e){}}
 
 function go(n){
@@ -406,7 +431,9 @@ function go(n){
   document.body.style.backgroundColor=slides[n].dataset.bg;
   document.body.classList.toggle('dark',n===LAST);
   $('prev').disabled=n===0;
-  $('next').disabled=n===LAST||(n in gates&&!gates[n])||(n===0&&!opened);
+  $('next').disabled=n===LAST||(n in gates&&!gates[n]&&n!==11)||(n===0&&!opened);
+  $('next').classList.toggle('glow',n===11&&gates[11]);
+  if(n!==11&&typeof voice!=='undefined'&&!voice.paused)voice.pause();
   $('stepTxt').textContent=(n+1)+' / '+slides.length;
   $('stepTxt').style.color=n===LAST?'#f3d9de':'';
   const h=26*(n/LAST); $('coffee').setAttribute('y',40-h); $('coffee').setAttribute('height',h);
@@ -417,7 +444,7 @@ function go(n){
   if(n===LAST) startShow(); else stopShow();
 }
 $('prev').onclick=()=>go(cur-1);
-$('next').onclick=()=>go(cur+1);
+$('next').onclick=()=>{if(cur===11&&!gates[11])return nudge();go(cur+1);};
 function shake(el){el.classList.remove('shake');void el.offsetWidth;el.classList.add('shake');}
 
 (function(){const g=['♥','✦','✿','♡','✧'],c=['#ff6f61','#f4b942','#ff9ad5','#b79cff','#7fd1b9'],box=$('sparkles');
@@ -538,29 +565,30 @@ function fillLetter(){
   $('letterName').textContent=nick||'Hijab';
   $('wishEcho').innerHTML=wishes.length?'<p>And about those wishes you sent off, I really hope you get every single one:</p><div class="chips">'+wishes.map(w=>'<span>✦ '+esc(w)+'</span>').join('')+'</div>':'';
 }
-let actx=null,playing=false;
-$('song').onclick=()=>{
-  if(playing)return;
-  try{actx=actx||new (window.AudioContext||window.webkitAudioContext)();}catch(e){return;}
-  if(actx.resume)actx.resume();
-  const N={C4:261.6,D4:293.7,E4:329.6,F4:349.2,G4:392,A4:440,Bb4:466.2,C5:523.3};
-  const tune=[['C4',.75],['C4',.25],['D4',1],['C4',1],['F4',1],['E4',2],
-              ['C4',.75],['C4',.25],['D4',1],['C4',1],['G4',1],['F4',2],
-              ['C4',.75],['C4',.25],['C5',1],['A4',1],['F4',1],['E4',1],['D4',2],
-              ['Bb4',.75],['Bb4',.25],['A4',1],['F4',1],['G4',1],['F4',2.5]];
-  const beat=.42;let t=actx.currentTime+.08;
-  tune.forEach(([n,d])=>{
-    [1,2].forEach((mult,k)=>{
-      const o=actx.createOscillator(),g=actx.createGain();
-      o.type=k?'sine':'triangle';o.frequency.value=N[n]*mult;
-      g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(k?.05:.22,t+.03);g.gain.exponentialRampToValueAtTime(.001,t+d*beat*.95);
-      o.connect(g);g.connect(actx.destination);o.start(t);o.stop(t+d*beat);
-    });
-    t+=d*beat;
-  });
-  playing=true;$('song').classList.add('playing');$('song').querySelector('span').textContent='Playing… 🎶';
-  setTimeout(()=>{playing=false;$('song').classList.remove('playing');$('song').querySelector('span').textContent='Play it again';},(t-actx.currentTime)*1000);
+const voice=$('voice'),vn=$('vn'),bars=[...document.querySelectorAll('#wave i')];
+const fmt=t=>Math.floor(t/60)+':'+String(Math.floor(t%60)).padStart(2,'0');
+voice.addEventListener('loadedmetadata',()=>{if(isFinite(voice.duration))$('vdur').textContent=fmt(voice.duration)});
+$('vplay').onclick=()=>{
+  if(voice.paused){const p=voice.play();if(p&&p.catch)p.catch(()=>{$('vmsg').textContent='Tap play again 🎧'});}
+  else voice.pause();
 };
+voice.addEventListener('play',()=>{vn.classList.add('playing');$('vplay').textContent='❚❚';if(!gates[11])$('vmsg').textContent='Listening… 💕'});
+voice.addEventListener('pause',()=>{vn.classList.remove('playing');$('vplay').textContent='▶'});
+voice.addEventListener('timeupdate',()=>{
+  const d=voice.duration||177,p=voice.currentTime/d;
+  bars.forEach((b,i)=>b.classList.toggle('on',i/bars.length<p));
+  $('vcur').textContent=fmt(voice.currentTime);
+});
+voice.addEventListener('ended',()=>{
+  gates[11]=true;vn.classList.add('done');vn.querySelector('.pin').textContent='✓ Suna gaya';
+  $('vmsg').textContent='Shukriya for listening ❤️ Ab aage chalo →';
+  $('next').classList.add('glow');burst(160);buzz([60,40,60]);
+});
+function nudge(){
+  const l=['Pehle voice note suno! 🎧','Nahi nahi, pehle ye suno 👀','Voice note skip? Not allowed 🙅‍♀️','Usama is waiting… press play ▶'];
+  $('vmsg').textContent=l[Math.floor(Math.random()*l.length)];shake(vn);buzz(80);
+  vn.scrollIntoView({behavior:'smooth',block:'center'});
+}
 
 $('boomBtn').onclick=()=>{for(let i=0;i<4;i++)setTimeout(randomFirework,i*220)};
 $('replayBtn').onclick=()=>{
@@ -577,6 +605,7 @@ $('replayBtn').onclick=()=>{
   taps=0;$('gift').className='gift';$('surprise').classList.remove('on');$('giftTxt').textContent='Tap it 5 times to convince it to open.';
   [...$('taps').children].forEach(t=>t.classList.remove('on'));
   couponsReady=false;document.querySelectorAll('.coupon canvas').forEach(c=>c.classList.remove('gone'));
+  voice.pause();voice.currentTime=0;vn.classList.remove('done','playing');vn.querySelector('.pin').textContent='📌 Lazmi suno!';$('vmsg').textContent='No leaving before you listen to this 👀';bars.forEach(b=>b.classList.remove('on'));$('vcur').textContent='0:00';
   nick='';wishes=[];go(0);
 };
 
