@@ -401,9 +401,9 @@
         <button class="vplay" id="vplay" aria-label="Play voice note">▶</button>
         <div class="vbody"><b>A voice note from Kaam Choor 🎧</b>
           <div class="wave" id="wave"><i style="height:30%"></i><i style="height:55%"></i><i style="height:80%"></i><i style="height:45%"></i><i style="height:95%"></i><i style="height:60%"></i><i style="height:35%"></i><i style="height:70%"></i><i style="height:90%"></i><i style="height:50%"></i><i style="height:40%"></i><i style="height:75%"></i><i style="height:100%"></i><i style="height:65%"></i><i style="height:30%"></i><i style="height:55%"></i><i style="height:85%"></i><i style="height:45%"></i><i style="height:70%"></i><i style="height:95%"></i><i style="height:40%"></i><i style="height:60%"></i><i style="height:80%"></i><i style="height:35%"></i><i style="height:55%"></i><i style="height:75%"></i><i style="height:45%"></i><i style="height:30%"></i></div>
-          <div class="vtime"><span id="vcur">0:00</span> / <span id="vdur">2:57</span></div>
+          <div class="vtime"><span id="vcur">0:00</span> / <span id="vdur">6:26</span></div>
         </div>
-        <audio id="voice" src="voice.mp3" preload="metadata"></audio>
+        <audio id="voice" src="voice.mp3?v=2" preload="metadata"></audio>
       </div>
       <div class="msg" id="vmsg" style="font-size:21px;margin-top:-6px">No leaving before you listen to this 👀</div>
     </section>
@@ -632,7 +632,7 @@ $('vplay').onclick=()=>{
 voice.addEventListener('play',()=>{vn.classList.add('playing');$('vplay').textContent='❚❚';if(!gates[11])$('vmsg').textContent='Listening… 💕'});
 voice.addEventListener('pause',()=>{vn.classList.remove('playing');$('vplay').textContent='▶'});
 voice.addEventListener('timeupdate',()=>{
-  const d=voice.duration||177,p=voice.currentTime/d;
+  const d=voice.duration||386,p=voice.currentTime/d;
   bars.forEach((b,i)=>b.classList.toggle('on',i/bars.length<p));
   $('vcur').textContent=fmt(voice.currentTime);
 });
