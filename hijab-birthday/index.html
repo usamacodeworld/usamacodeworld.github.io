@@ -305,9 +305,9 @@
       <h2>Things only <em>Hijab</em> does</h2>
       <div class="cards">
         <div class="card"><div class="in"><div class="f">😤<small>tap me</small></div><div class="b">Gets upset over the tiniest thing. Pout loading in 3… 2… 1…</div></div></div>
-        <div class="card"><div class="in"><div class="f">📈<small>tap me</small></div><div class="b">Teaches Usama SEO, campaigns &amp; reports. Patiently. Mostly.</div></div></div>
-        <div class="card"><div class="in"><div class="f">🍱<small>tap me</small></div><div class="b">Lunch with Usama = officially the happiest part of his day</div></div></div>
-        <div class="card"><div class="in"><div class="f">📏<small>tap me</small></div><div class="b">Brings up the "6-foot Chakky" just to annoy Usama. Works every time.</div></div></div>
+        <div class="card"><div class="in"><div class="f">📈<small>tap me</small></div><div class="b">Teaches Kaam Choor SEO, campaigns &amp; reports. Patiently. Mostly.</div></div></div>
+        <div class="card"><div class="in"><div class="f">🍱<small>tap me</small></div><div class="b">Lunch with Kaam Choor = officially the happiest part of his day</div></div></div>
+        <div class="card"><div class="in"><div class="f">📏<small>tap me</small></div><div class="b">Brings up the "6-foot Chakky" just to annoy Kaam Choor. Works every time.</div></div></div>
       </div>
     </section>
 
@@ -341,7 +341,7 @@
       <h2>Three wishes for <em>twenty</em>.</h2>
       <p class="small">Write anything. The Universe has a strict "no refunds" policy, so choose wisely.</p>
       <div class="wishes">
-        <label><span>1</span><input class="wish" value="Usama ko campaigns chalana sikhana hai 😂" placeholder="e.g. a trip somewhere pretty"></label>
+        <label><span>1</span><input class="wish" value="Kaam Choor ko campaigns chalana sikhana hai 😂" placeholder="e.g. a trip somewhere pretty"></label>
         <label><span>2</span><input class="wish" placeholder="e.g. zero bugs on Monday"></label>
         <label><span>3</span><input class="wish" placeholder="e.g. unlimited coffee"></label>
       </div>
@@ -364,9 +364,9 @@
       <h2>Your birthday <em>coupons</em></h2>
       <p class="small">Scratch them off with your finger. Yes, they're real. Yes, I'll honour them.</p>
       <div class="coupons">
-        <div class="coupon"><span class="ic">☕</span><div><b>1 free coffee, on Usama</b><small>any café, any size, no complaints</small></div><canvas></canvas></div>
+        <div class="coupon"><span class="ic">☕</span><div><b>1 free coffee, on Kaam Choor</b><small>any café, any size, no complaints</small></div><canvas></canvas></div>
         <div class="coupon"><span class="ic">🐞</span><div><b>1 "no bug reports" day</b><small>I'll pretend everything works</small></div><canvas></canvas></div>
-        <div class="coupon"><span class="ic">🔍</span><div><b>1 website SEO, done by Usama</b><small>for you, free. Your turn to sit back and relax</small></div><canvas></canvas></div>
+        <div class="coupon"><span class="ic">🔍</span><div><b>1 website SEO, done by Kaam Choor</b><small>for you, free. Your turn to sit back and relax</small></div><canvas></canvas></div>
       </div>
     </section>
 
@@ -394,12 +394,12 @@
         <p>You make ordinary office days feel lighter. You laugh at my bad jokes (mostly out of pity, but still). You bring colour into everything, just like you did with that photo earlier.</p>
         <div id="wishEcho"></div>
         <p>Twenty looks good on you. I hope this year treats you as kindly as you treat everyone around you. And just so it's on record: I love you sooo much. ❤️</p>
-        <p class="sig">— Usama</p>
+        <p class="sig">— Kaam Choor</p>
       </div>
       <div class="vn" id="vn">
         <div class="pin">📌 Lazmi suno!</div>
         <button class="vplay" id="vplay" aria-label="Play voice note">▶</button>
-        <div class="vbody"><b>A voice note from Usama 🎧</b>
+        <div class="vbody"><b>A voice note from Kaam Choor 🎧</b>
           <div class="wave" id="wave"><i style="height:30%"></i><i style="height:55%"></i><i style="height:80%"></i><i style="height:45%"></i><i style="height:95%"></i><i style="height:60%"></i><i style="height:35%"></i><i style="height:70%"></i><i style="height:90%"></i><i style="height:50%"></i><i style="height:40%"></i><i style="height:75%"></i><i style="height:100%"></i><i style="height:65%"></i><i style="height:30%"></i><i style="height:55%"></i><i style="height:85%"></i><i style="height:45%"></i><i style="height:70%"></i><i style="height:95%"></i><i style="height:40%"></i><i style="height:60%"></i><i style="height:80%"></i><i style="height:35%"></i><i style="height:55%"></i><i style="height:75%"></i><i style="height:45%"></i><i style="height:30%"></i></div>
           <div class="vtime"><span id="vcur">0:00</span> / <span id="vdur">2:57</span></div>
         </div>
@@ -642,7 +642,7 @@ voice.addEventListener('ended',()=>{
   $('next').classList.add('glow');burst(160);buzz([60,40,60]);
 });
 function nudge(){
-  const l=['Pehle voice note suno! 🎧','Nahi nahi, pehle ye suno 👀','Voice note skip? Not allowed 🙅‍♀️','Usama is waiting… press play ▶'];
+  const l=['Pehle voice note suno! 🎧','Nahi nahi, pehle ye suno 👀','Voice note skip? Not allowed 🙅‍♀️','Kaam Choor is waiting… press play ▶'];
   $('vmsg').textContent=l[Math.floor(Math.random()*l.length)];shake(vn);buzz(80);
   vn.scrollIntoView({behavior:'smooth',block:'center'});
 }
@@ -652,7 +652,7 @@ $('replayBtn').onclick=()=>{
   opened=false;$('env').classList.remove('open');
   Object.keys(gates).forEach(k=>gates[k]=false);
   ['nameIn','nickIn','ageIn'].forEach(i=>$(i).value='');
-  document.querySelectorAll('.wish').forEach((i,k)=>i.value=k?'':'Usama ko campaigns chalana sikhana hai 😂');
+  document.querySelectorAll('.wish').forEach((i,k)=>i.value=k?'':'Kaam Choor ko campaigns chalana sikhana hai 😂');
   ['nameMsg','ageMsg','wishMsg'].forEach(i=>$(i).textContent='');
   $('ageWrap').style.display='none';$('ageBtn').style.display='';$('ageBar').style.width='0';
   $('stamp').classList.remove('on');
